@@ -23,6 +23,27 @@ app.get('/api/inventario/productos', (req, res) => {
 });
 
 
+app.post('/api/inventario/productos', (req, res) => {
+  const { dato } = req.body;
+  
+  if (!dato) {
+    return res.status(400).json({ error: 'Se requiere el dato' });
+  }
+
+  const query = 'INSERT INTO tabla (columna) VALUES (?)';
+  
+  db.query(query, [dato], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Error al guardar en BD' });
+    }
+    res.json({ mensaje: 'Dato guardado', id: result.insertId });
+  });
+});
+
+
+
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

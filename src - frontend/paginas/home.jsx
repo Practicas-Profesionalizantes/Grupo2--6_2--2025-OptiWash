@@ -6,14 +6,17 @@ function Home (){
         <body>
             <h1>Home</h1>
             <div className="tarjetas">
-                <div className="tarjeta1">
-                    hola
+                <div className="tarjeta">
+                    INVENTARIO
                 </div>
-                <div className="tarjeta2">
-                    hola
+                <div className="tarjeta">
+                    ASISTENCIAS
                 </div>
-                <div className="tarjeta3">
-                    hola
+                <div className="tarjeta">
+                    REGISTRO DE AUTOS
+                </div>
+                <div className="navbar">
+
                 </div>
             </div>
             

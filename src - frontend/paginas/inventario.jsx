@@ -4,6 +4,8 @@
 
     function Inventario() {
         const [productos, setProductos] = useState([]);
+        const [mostrarFormulario, setMostrarFormulario] = useState(false);
+        const [mensajeGlobal, setMensajeGlobal] = useState('');
 
         useEffect(()=> {
             axios.get('/api/inventario/productos')
@@ -18,6 +20,32 @@
         return(<>
         <div>
             <h1>inventario</h1>
+                <div className="mostrar-form">
+                    <button 
+                        onClick={() => setMostrarFormulario(true)}
+                        className="btn btn-show-form"
+                    >
+                        {mostrarFormulario ? 'Formulario Visible' : 'Abrir Formulario'}
+                    </button>
+
+                    {mostrarFormulario && (
+                        <FormularioDatos
+                        onClose={() => {
+                            setMostrarFormulario(false);
+                            setMensajeGlobal('');
+                        }}
+                        onSuccess={(mensaje) => {
+                            setMensajeGlobal(mensaje);
+                            setMostrarFormulario(false);
+                        }}
+                        />
+                    )}
+                    {mensajeGlobal && (
+                        <div className="global-message success">
+                        {mensajeGlobal}
+                        </div>
+                    )}
+                </div>
             <div>
                 {productos.map(producto => (
                     <div key={producto.ID}>
@@ -30,5 +58,5 @@
         </div>
         </>)
     }
-
     export default Inventario;
+
