@@ -1,109 +1,88 @@
-import "../style/inventario.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Inventario() {
   const [productos, setProductos] = useState([]);
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [consumido, setConsumido] = useState("");
-
-  const cargarProductos = () => {
-    axios.get("/api/inventario").then((res) => setProductos(res.data));
-  };
+  const [modo, setModo] = useState(null);
+  const [litrosEditados, setLitrosEditados] = useState({}); 
 
   useEffect(() => {
     cargarProductos();
   }, []);
 
-  const seleccionarProducto = (producto) => {
-    setProductoSeleccionado(producto);
-    setConsumido("");
+  const cargarProductos = async () => {
+    const res = await axios.get('/api/inventario');
+    setProductos(res.data);
   };
 
-  const actualizarCantidad = () => {
-    const cantidadFinal = productoSeleccionado.Bidon - parseInt(consumido);
+  const handleLitrosChange = (id, valor) => {
+    setLitrosEditados(prev => ({ ...prev, [id]: valor }));
+  };
 
-    axios
-      .put(`/api/inventario/actualizar/${productoSeleccionado.ID}`, {
-        Bidon: cantidadFinal,
-      })
-      .then((res) => {
-        console.log("Cantidad actualizada");
-        cargarProductos();
-        setProductoSeleccionado(null);
+  const confirmarCambios = async () => {
+    for (const producto of productos) {
+      const id = producto.ID;
+      const valor = parseFloat(litrosEditados[id]);
+      if (!valor || valor <= 0) continue;
+
+      const litrosFinal = modo === 'utilizado' ? -valor : valor;
+
+      await axios.put(`/api/inventario/actualizar/${id}`, {
+        litrosComprados: litrosFinal,
       });
+    }
+
+    setModo(null);
+    setLitrosEditados({});
+    cargarProductos();
   };
+
   return (
-    <>
-      <div>
-        <h1>inventario</h1>
-        <div>
-          {productos.map((producto) => (
-            <div key={producto.ID}>
-              <h2>{producto.Nombre}</h2>
-              <img
-                src={producto.Img}
-                style={{ width: "200px", borderRadius: "10px" }}
-                alt={producto.Nombre}
-              />
-              <h2>{producto.Bidon}</h2>
-              <button onClick={() => seleccionarProducto(producto)}>
-                Seleccionar
-              </button>
-            </div>
-          ))}
-        </div>
-        {productoSeleccionado && (
+    <div>
+      {/* Botones principales */}
+      {modo === null && (
+        <>
+          <h2>Inventario</h2>
+          <button onClick={() => setModo('agregar')}>Agregar</button>
+          <button onClick={() => setModo('utilizado')}>utilizado</button>
           <div>
-            <h3>Registrar consumo de: {productoSeleccionado.Nombre}</h3>
-            <p>
-              Bidones actuales: <strong>{productoSeleccionado.Bidon}</strong>
-            </p>
-
-            <input
-              type="number"
-              value={consumido}
-              onChange={(e) => setConsumido(e.target.value)}
-              placeholder="Cantidad consumida"
-              min={1}
-              max={productoSeleccionado.Bidon}
-            />
-
-            {consumido !== "" &&
-              parseInt(consumido) > productoSeleccionado.Bidon && (
-                <p style={{ color: "red" }}>
-                  No podés consumir más de {productoSeleccionado.Bidon} bidones
-                </p>
-              )}
-
-            {consumido !== "" &&
-              parseInt(consumido) <= productoSeleccionado.Bidon && (
-                <p>
-                  Quedarían:{" "}
-                  <strong>
-                    {productoSeleccionado.Bidon - parseInt(consumido)}
-                  </strong>{" "}
-                  bidones
-                </p>
-              )}
-
-            <button
-              onClick={actualizarCantidad}
-              disabled={
-                isNaN(consumido) ||
-                consumido === "" ||
-                parseInt(consumido) > productoSeleccionado.Bidon
-              }
-            >
-              Actualizar
-            </button>
-            <button onClick={() => setProductoSeleccionado(null)}>
-            Volver al inventario
-            </button>
+            {productos.map(p => (
+              <div key={p.ID}>
+                <img src={p.Img} alt={p.Nombre} width="10%" />
+                <h4>{p.Nombre}</h4>
+                <p>{p.Litros} L </p>
+              </div>
+            ))}
           </div>
-        )}
-      </div>
-    </>
+        </>
+      )}
+
+      {/* Vista de edición */}
+      {modo !== null && (
+        <>
+          <h2>{modo === 'agregar' ? 'Agregar productos al inventario' : 'Registrar productos utilizados'}</h2>
+          <button onClick={() => setModo(null)}>Volver</button>
+          <div>
+            {productos.map(p => (
+              <div key={p.ID}>
+                <strong>{p.Nombre}</strong>:
+                <input
+                  type="number"
+                  placeholder="Litros"
+                  min="0"
+                  max={modo === 'utilizado' ? p.Litros : undefined}
+                  onChange={e => handleLitrosChange(p.ID, e.target.value)}
+                />
+              </div>
+            ))}
+          </div>
+          <button onClick={confirmarCambios} style={{ marginTop: '1rem' }}>
+            Confirmar
+          </button>
+        </>
+      )}
+    </div>
   );
 }
+
 export default Inventario;

@@ -13,11 +13,11 @@ router.get('/', (req, res) => {
 
 router.put('/actualizar/:id', (req, res) => {
   const id = req.params.id;
-  const { Bidon } = req.body;
+  const { litrosComprados } = req.body;
+  const sql = 'UPDATE Producto SET Litros = Litros + ? WHERE ID = ?';
 
-  const sql = 'UPDATE Producto SET Bidon = ? WHERE ID = ?;';
-  db.query(sql, [Bidon, id], (err, result) => {
-    res.send('Producto actualizado');
+  db.query(sql, [litrosComprados, id], (err, result) => {
+    res.send('Producto actualizado con nuevos litros');
   });
 });
 
