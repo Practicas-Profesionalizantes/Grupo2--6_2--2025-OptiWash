@@ -48,7 +48,7 @@ CREATE TABLE Asistencia (
 CREATE TABLE Producto (
     ID int auto_increment PRIMARY KEY,
     Nombre VARCHAR(50),
-    Litros float,
+    Litros DECIMAL(10, 2),
     Img VARCHAR(500)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE Movimiento_Inventario (
     ID_Producto INT REFERENCES Producto(ID),
     Fecha DATE DEFAULT (CURRENT_DATE()),
     Tipo ENUM('Entrada', 'Salida'),
-    Litros FLOAT
+    Litros DECIMAL(10, 2)
 );
 
 
