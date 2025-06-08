@@ -187,3 +187,13 @@ INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES
 (8, '2025-05-03', 'Salida', 20),
 (6, '2025-05-04', 'Salida', 20),
 (8, '2025-05-05', 'Salida', 15);
+
+DELIMITER //
+
+CREATE TRIGGER Movimiento_Productos
+AFTER INSERT ON Movimiento_Inventario
+FOR EACH ROW
+BEGIN
+	INSERT INTO Movimiento_Inventario (Producto_id, Litros)
+    VALUES(NEW.id, NOW());
+END//		
