@@ -76,7 +76,7 @@ function Inventario() {
               </div>
             ))}
           </div>
-          <button onClick={confirmarCambios} style={{ marginTop: '1rem' }}>
+          <button onClick={confirmarCambios}>
             Confirmar
           </button>
         </>

@@ -48,7 +48,7 @@ CREATE TABLE Asistencia (
 CREATE TABLE Producto (
     ID int auto_increment PRIMARY KEY,
     Nombre VARCHAR(50),
-    Litros float,
+    Litros DECIMAL(10, 2),
     Img VARCHAR(500)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE Movimiento_Inventario (
     ID_Producto INT REFERENCES Producto(ID),
     Fecha DATE DEFAULT (CURRENT_DATE()),
     Tipo ENUM('Entrada', 'Salida'),
-    Litros FLOAT
+    Litros DECIMAL(10, 2)
 );
 
 
@@ -157,13 +157,13 @@ INSERT INTO Asistencia (ID_Empleado, Fecha, Hora_Entrada) VALUES
 -- Insertar datos en la tabla Producto
 INSERT INTO Producto (Nombre, Litros, Img) VALUES 
 ('Shampoo para autos',15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Shampoo-Lava-Autos-x-480-cc-ok-3.jpg"),
-('limpia tapizados', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Limpia-Tapizados-x-480-cc-ok.jpg"),
-('silicona de goma', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Reviv-Gomas-y-Alfombras-Verde-x-20-lts-ok.jpg"),
-('silicona de plástico', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Protectant-Aromatizado-x-5-Lt-b.jpg"),
-('saca bichos', 20, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Removedor-de-Insectos-x-480-cc-ok.jpg"),
+('Limpia tapizados', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Limpia-Tapizados-x-480-cc-ok.jpg"),
+('Silicona de goma', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Reviv-Gomas-y-Alfombras-Verde-x-20-lts-ok.jpg"),
+('Silicona de plástico', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Protectant-Aromatizado-x-5-Lt-b.jpg"),
+('Saca bichos', 20, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Removedor-de-Insectos-x-480-cc-ok.jpg"),
 ('Desengrasante', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/06/Limpia-Cristales-Listo-para-usar-5-lts-ok.jpg"),
-('perfume', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2020/06/Fragancia-Ambiental-x-480-cc.jpg"),
-('cera para brillo', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Componente-2.jpg");
+('Perfume', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2020/06/Fragancia-Ambiental-x-480-cc.jpg"),
+('Cera para brillo', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Componente-2.jpg");
 
 -- Insertar datos en la tabla Movimiento_Inventario
 INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES 
@@ -187,3 +187,20 @@ INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES
 (8, '2025-05-03', 'Salida', 20),
 (6, '2025-05-04', 'Salida', 20),
 (8, '2025-05-05', 'Salida', 15);
+
+DELIMITER //
+
+CREATE TRIGGER Movimiento_Productos
+AFTER update ON Producto
+FOR EACH ROW
+BEGIN
+	IF NEW.Litros > 10 THEN
+        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros)
+        VALUES (NEW.ID, NOW(), 'entrada', NEW.Litros);
+    ELSE
+        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros)
+        VALUES (NEW.ID, NOW(), 'salida', NEW.Litros);
+    END IF;
+END//		
+
+DELIMITER ;

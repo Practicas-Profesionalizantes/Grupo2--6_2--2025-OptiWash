@@ -12,13 +12,33 @@ router.get('/', (req, res) => {
 
 
 router.put('/actualizar/:id', (req, res) => {
+  console.log('Ruta PUT /actualizar llamada');
+  console.log('ID:', req.params.id);
+  console.log('litrosComprados:', req.body.litrosComprados);
   const id = req.params.id;
-  const { litrosComprados } = req.body;
-  const sql = 'UPDATE Producto SET Litros = Litros + ? WHERE ID = ?';
+  const litrosComprados = req.body.litrosComprados;
 
-  db.query(sql, [litrosComprados, id], (err, result) => {
-    res.send('Producto actualizado con nuevos litros');
+  // Paso 1: obtener litros actuales
+  const sqlSelect = 'SELECT Litros FROM Producto WHERE ID = ?';
+  db.query(sqlSelect, [id], (err, results) => {
+    const litrosActuales = results[0].Litros;
+
+    // Paso 2: calcular nuevo total
+    const nuevoLitros = litrosActuales + litrosComprados;
+
+    // Paso 3: validar que no sea negativo
+    if (nuevoLitros < 0) {
+      res.send('No puedes sacar más litros de los que hay');
+      return;
+    }
+
+    // Paso 4: actualizar la tabla
+    const sqlUpdate = 'UPDATE Producto SET Litros = ? WHERE ID = ?';
+    db.query(sqlUpdate, [nuevoLitros, id], () => {
+      res.send('Producto actualizado con nuevos litros');
+    });
   });
 });
+
 
 export default router;
