@@ -4,7 +4,9 @@ import axios from 'axios';
 function Inventario() {
   const [productos, setProductos] = useState([]);
   const [modo, setModo] = useState(null);
-  const [litrosEditados, setLitrosEditados] = useState({}); 
+  const [litrosEditados, setLitrosEditados] = useState({});
+  const [mensaje, setMensaje] = useState('');
+
 
   useEffect(() => {
     cargarProductos();
@@ -20,28 +22,43 @@ function Inventario() {
   };
 
   const confirmarCambios = async () => {
+    let huboCambios = false;
+  
     for (const producto of productos) {
       const id = producto.ID;
       const valor = parseFloat(litrosEditados[id]);
-      if (!valor || valor <= 0) continue;
-
+  
+      if (isNaN(valor) || valor <= 0) continue;
+  
       const litrosFinal = modo === 'utilizado' ? -valor : valor;
-
+  
       await axios.put(`/api/inventario/actualizar/${id}`, {
         litrosComprados: litrosFinal,
       });
+  
+      huboCambios = true;
     }
-
+  
+    if (huboCambios) {
+      setMensaje('Inventario actualizado con éxito.');
+    } else {
+      setMensaje('No se realizaron cambios.');
+    }
+  
     setModo(null);
     setLitrosEditados({});
     cargarProductos();
+  
+    setTimeout(() => setMensaje(''), 3000);
   };
+  
 
   return (
     <div>
       {/* Botones principales */}
       {modo === null && (
         <>
+          {mensaje && <p style={{ color: 'green' }}>{mensaje}</p>}
           <h2>Inventario</h2>
           <button onClick={() => setModo('agregar')}>Agregar</button>
           <button onClick={() => setModo('utilizado')}>utilizado</button>

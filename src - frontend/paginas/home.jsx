@@ -1,5 +1,5 @@
-import Nav from "../componentes/navbar";
 import "../style/Home.css"
+import inventario from "../img/inventario/inventario.png";
 
 function Home (){
     return(<>
@@ -7,17 +7,17 @@ function Home (){
             <h1>Home</h1>
             <div className="tarjetas">
                 <div className="tarjeta">
-                    INVENTARIO
+                    <h2>INVENTARIO</h2>
+                    <img src={inventario} alt=""/>
                 </div>
                 <div className="tarjeta">
-                    ASISTENCIAS
+                    <h2>ASISTENCIAS</h2>
                 </div>
                 <div className="tarjeta">
-                    REGISTRO DE AUTOS
+                    <h2>REGISTRO DE AUTOS LAVADOS</h2>
                 </div>
-                <div className="navbar">
 
-                </div>
+
             </div>
             
         </body>

@@ -191,16 +191,21 @@ INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES
 DELIMITER //
 
 CREATE TRIGGER Movimiento_Productos
-AFTER update ON Producto
+AFTER UPDATE ON Producto
 FOR EACH ROW
 BEGIN
-	IF NEW.Litros > 10 THEN
+    DECLARE diferencia DECIMAL(10,2);
+    SET diferencia = NEW.Litros - OLD.Litros;
+
+    IF diferencia > 0 THEN
+        -- Entrada: se agregaron litros
         INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros)
-        VALUES (NEW.ID, NOW(), 'entrada', NEW.Litros);
-    ELSE
+        VALUES (NEW.ID, NOW(), 'Entrada', diferencia);
+    ELSEIF diferencia < 0 THEN
+        -- Salida: se usaron litros
         INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros)
-        VALUES (NEW.ID, NOW(), 'salida', NEW.Litros);
+        VALUES (NEW.ID, NOW(), 'Salida', ABS(diferencia));
     END IF;
-END//		
+END//
 
 DELIMITER ;
