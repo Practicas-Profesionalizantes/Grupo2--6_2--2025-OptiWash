@@ -19,7 +19,7 @@ body{
 }
 .tarjeta{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #ECEBF3;
@@ -27,37 +27,14 @@ body{
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    height: 120%;
+    height: 160%;
     width: 100%;
 }
 
 #t1{
     box-shadow: -10px 10px 5px 13px rgba(0, 0, 0, 0.2);
 }
-.ImInventario{
-    width:100%;
-    height: 35%;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color:white;
-    font-family: sans-serif;
-}
-.ImAsistencias{
-    width:60%;
-    height: 35%;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color:white;
-    font-family: sans-serif;
-}
-.ImRegistro{
-    width:60%;
-    height: 35%;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color:white;
-    font-family: sans-serif;
-}
+
 
 
 #t2{
@@ -83,3 +60,4 @@ body{
   font-variation-settings:
     "wdth" 100;
     text-align: center;
+}
