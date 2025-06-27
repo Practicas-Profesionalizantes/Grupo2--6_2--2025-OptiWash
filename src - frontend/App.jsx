@@ -1,6 +1,8 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Inventario from "./paginas/inventario";
 import Home from "./paginas/home";
+import Asistencia from "./paginas/asistencias";
+import Registro_autos from "./paginas/registro_autos";
 
 /*
 Mysql = npm i mysql2
@@ -15,8 +17,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-        <Route path="/inventario" element={<Inventario></Inventario>}/>
         <Route path="/" element={<Home></Home>}/>
+        <Route path="/inventario" element={<Inventario></Inventario>}/>
+        <Route path="/asistencia" element={<Asistencia></Asistencia>}/>
+        <Route path="/registro_autos" element={<Registro_autos></Registro_autos>}/>
         </Routes>
       </BrowserRouter>
     </>

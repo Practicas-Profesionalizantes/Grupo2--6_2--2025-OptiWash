@@ -15,13 +15,18 @@ router.put('/actualizar/:id', (req, res) => {
   console.log('Ruta PUT /actualizar llamada');
   console.log('ID:', req.params.id);
   console.log('litrosComprados:', req.body.litrosComprados);
-  const id = req.params.id;
-  const litrosComprados = req.body.litrosComprados;
-
+  const id = parseInt(req.params.id);
+  const litrosComprados = parseFloat(req.body.litrosComprados);
+  
+  if (isNaN(litrosComprados)) {
+    res.status(400).send('El valor de litros no es válido');
+    return;
+  }
+  
   // Paso 1: obtener litros actuales
   const sqlSelect = 'SELECT Litros FROM Producto WHERE ID = ?';
   db.query(sqlSelect, [id], (err, results) => {
-    const litrosActuales = results[0].Litros;
+    const litrosActuales = parseFloat(results[0].Litros);
 
     // Paso 2: calcular nuevo total
     const nuevoLitros = litrosActuales + litrosComprados;
