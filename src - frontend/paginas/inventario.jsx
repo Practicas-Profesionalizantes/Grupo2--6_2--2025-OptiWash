@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../style/inventario.css'; 
+
 
 function Inventario() {
   const [productos, setProductos] = useState([]);
@@ -54,20 +56,25 @@ function Inventario() {
   
 
   return (
-    <div>
-      {/* Botones principales */}
+    <div className='cuerpo'>
       {modo === null && (
         <>
           {mensaje && <p style={{ color: 'green' }}>{mensaje}</p>}
-          <h2>Inventario</h2>
-          <button onClick={() => setModo('agregar')}>Agregar</button>
-          <button onClick={() => setModo('utilizado')}>utilizado</button>
-          <div>
+          <div className="opciones">
+            <button className="boton" id='agregar' onClick={() => setModo('agregar')}>Agregar</button>
+            <button className="boton" id='utilizado' onClick={() => setModo('utilizado')}>Utilizado</button>
+          </div>
+          <div className="contenedor">
             {productos.map(p => (
-              <div key={p.ID}>
-                <img src={p.Img} alt={p.Nombre} width="10%" />
-                <h4>{p.Nombre}</h4>
-                <p>{p.Litros} L </p>
+              <div className="tarjetas-i" key={p.ID}>
+                <spam className="Nombre">{p.Nombre}</spam>
+                <div className='img-productos'>
+                  <img src={p.Img} alt={p.Nombre} />
+                </div>
+                <div className="down">
+                  <p>Total:</p>
+                  <h2 className="litros">{p.Litros} L</h2>
+                </div>
               </div>
             ))}
           </div>
@@ -79,7 +86,7 @@ function Inventario() {
         <>
           <h2>{modo === 'agregar' ? 'Agregar productos al inventario' : 'Registrar productos utilizados'}</h2>
           <button onClick={() => setModo(null)}>Volver</button>
-          <div>
+          <div className='botones-ia'>
             {productos.map(p => (
               <div key={p.ID}>
                 <strong>{p.Nombre}</strong>:

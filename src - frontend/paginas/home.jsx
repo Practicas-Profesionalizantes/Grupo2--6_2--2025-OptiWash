@@ -6,28 +6,28 @@ import { Link } from "react-router-dom";
 
 function Home (){
     return(<>
-        <body>
-            <div className="tarjetas">
+        <main>
+            <div className="tarjetas-h">
                 <Link to="/inventario" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta" id="t1">
+                    <div className="tarjeta-h" id="t1">
                         <h2>INVENTARIO</h2>
                         <img src={inventario} alt=""/>
                     </div>
                 </Link>
                 <Link to="/asistencia" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta" id="t2">
+                    <div className="tarjeta-h" id="t2">
                         <h2>ASISTENCIAS</h2>
                         <img src={asistencias} alt=""/>
                     </div>
                 </Link>
                 <Link to="/registro_autos" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta" id="t3">
+                    <div className="tarjeta-h" id="t3">
                         <h2>REGISTROS DE AUTOS</h2>
                         <img src={autos_lavados} alt=""/>
                     </div>
                 </Link>
             </div>
-        </body>
+        </main>
     </>)
 };
 
