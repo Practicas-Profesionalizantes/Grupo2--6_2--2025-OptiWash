@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Inventario from "./paginas/inventario";
 import Home from "./paginas/home";
 import Asistencia from "./paginas/asistencias";
 import Registro_autos from "./paginas/registro_autos";
 import Nav from "./componentes/navbar";
-import './style/app.css';
 
 function App() {
   const [tema, setTema] = useState('#ffffff');

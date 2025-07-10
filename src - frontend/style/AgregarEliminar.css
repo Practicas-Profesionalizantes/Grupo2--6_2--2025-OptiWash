@@ -1,0 +1,86 @@
+
+.contenedor-form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #558564;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+
+}
+.contenedor-form-agregar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #BD4747;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.sub-contenedor{
+    background-color: #C7D6D5;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.tabla-inventario {
+  width: 35%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #C7D6D5;
+
+}
+.tabla-inventario th{
+    padding: 8px;
+    text-align: center;
+}
+
+.tabla-inventario td{
+  border-top: 2px solid #444444;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabla-inventario input {
+  width: 80px;
+}
+
+.boton-ae{
+    margin: 1rem;
+    padding: 0.8rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: white;
+
+}
+
+thead{
+    background-color: #1C3144;
+    color: white;
+}
+
+#volver{
+    margin-left: 60%;
+    background-color: #815E5B;
+}
+
+#confirmar{
+    background-color: #76ac87;
+}
+
+.boton-ae:hover{
+    box-shadow: 0px 0px 10px rgb(58, 58, 58);
+}

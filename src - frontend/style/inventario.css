@@ -6,6 +6,9 @@
 
 .cuerpo{
     font-family: "Inter", sans-serif;
+    position: relative;
+    min-height: 400px;
+    position: relative; 
 }
 .opciones {
   display: flex;
@@ -14,28 +17,31 @@
   margin: 1rem;
 }
 
-.boton{
+.boton-i{
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   background-color: #ecebf3;
   border-radius: 10px;
-  width: 123px;
-  height: 60px;
+  width: 8%;
   border: solid 1px black;
   margin: 0.5rem;
   font-size: 20px;
+  cursor: pointer;
+  transition:  0.3s ease-in;
+}
+
+.boton-i:hover ,#agregar:hover ,#utilizado:hover{
+  opacity: 0.6;
 }
 
 #agregar {
   background-color: #558564;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 #utilizado {
   background-color: #c7d6d5;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .contenedor {
@@ -91,8 +97,3 @@
   margin-left: 5%;
 }
 
-.botones-ia{
-  display: gridº;
-  align-items: center;
-  justify-content: center;
-}
