@@ -156,14 +156,14 @@ INSERT INTO Asistencia (ID_Empleado, Fecha, Hora_Entrada) VALUES
 
 -- Insertar datos en la tabla Producto
 INSERT INTO Producto (Nombre, Litros, Img) VALUES 
-('Shampoo para autos',15, "https://ibb.co/BVXQ6Tbd"),
-('Limpia tapizados', 5, "https://ibb.co/Mynfdp48"),
-('Silicona de goma', 15, "https://ibb.co/bRNLpLp8"),
-('Silicona de plástico', 15, "https://ibb.co/qYpcG7FN"),
-('Saca bichos', 20, "https://ibb.co/LX5MK9C4"),
-('Desengrasante', 5, "https://ibb.co/bMt75dcB"),
-('Perfume', 5, "https://ibb.co/398fPFrx"),
-('Cera para brillo', 5, "https://ibb.co/vvwP6zcQ");
+('Shampoo para autos',15, "https://i.ibb.co/SXhMmVbW/Shampoo.png"),
+('Limpia tapizados', 5, "https://i.ibb.co/NgxrRpP1/Limpia-Tapizados.png"),
+('Silicona de goma', 15, "https://i.ibb.co/G3Ckgkgb/Silicona-De-Goma.png"),
+('Silicona de plástico', 15, "https://i.ibb.co/1GTPV7Jr/Silicona-De-Plastico.png"),
+('Saca bichos', 20, "https://i.ibb.co/0Rtk5YfP/Saca-Bicho.png"),
+('Desengrasante', 5, "https://i.ibb.co/mVpS5zfq/Desengrasante.png"),
+('Perfume', 5, "https://i.ibb.co/nNV3K1gX/Perfume.png"),
+('Cera para brillo', 5, "https://i.ibb.co/R4v0kHgB/Cera-Brillo.png");
 
 -- Insertar datos en la tabla Movimiento_Inventario
 INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES 
