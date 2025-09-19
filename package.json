@@ -1,0 +1,27 @@
+{
+  "name": "grupo2--6_2--2025-optiwash",
+  "version": "1.0.0",
+  "description": "MVP: 10/07/2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cliente": "cd cliente && npm run dev",
+    "server": "cd server/src && node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run cliente\""
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Practicas-Profesionalizantes/Grupo2--6_2--2025-OptiWash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Practicas-Profesionalizantes/Grupo2--6_2--2025-OptiWash/issues"
+  },
+  "homepage": "https://github.com/Practicas-Profesionalizantes/Grupo2--6_2--2025-OptiWash#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

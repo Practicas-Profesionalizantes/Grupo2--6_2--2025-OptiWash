@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.nav {
+    background-color: #1C3144;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.parte1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+
+
+.navboton {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    justify-content: start;
+}
+
+
+.fecha-hora-centro {
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    background-color: #ECEBF3;
+    padding: 0.8%;
+    border-radius: 10px;
+    box-shadow: #ECEBF3 0px 0px 10px;
+    margin-right: 19%;
+}
+
+.botones{
+    background-color: transparent;
+    border: none;
+    color: #C7D6D5;
+    transition: 0.3s ease-in-out;
+    font-family: "Crimson Text", serif;
+    font-style: normal;
+    font-size: 17px;
+    transition: 0.5s ease;
+    padding: 0.3rem;
+}
+
+.nav img{
+    height: 15%;
+    width: 15%;
+    margin: 3% ;
+    margin-left: 10%;
+}
+
+
+
+
+
+
+
+
+ 
+
+
+

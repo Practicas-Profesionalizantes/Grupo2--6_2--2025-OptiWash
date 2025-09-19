@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+.cuerpo{
+    font-family: "Inter", sans-serif;
+    position: relative;
+    min-height: 400px;
+    position: relative; 
+}
+.opciones {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 1rem;
+}
+
+.boton-i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #ecebf3;
+  border-radius: 10px;
+  width: 8%;
+  border: solid 1px black;
+  margin: 0.5rem;
+  font-size: 20px;
+  cursor: pointer;
+  transition:  0.3s ease-in;
+}
+
+.boton-i:hover ,#agregar:hover ,#utilizado:hover{
+  opacity: 0.6;
+}
+
+#agregar {
+  background-color: #558564;
+}
+
+#utilizado {
+  background-color: #c7d6d5;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  margin: 0rem 8rem;
+}
+
+.tarjetas-i{
+    display: flex;
+    flex-direction: column;
+    background-color: #c7d6d5;
+    border: 1px solid black;
+    border-radius: 10px 10px 10px 10px;
+    box-sizing: border-box;
+}
+
+.Nombre {
+    background-color: #ECEBF3;
+    font-size: 25px;
+    text-align: center;
+    border:  1px solid black;
+    border-radius: 10px;
+    margin: 10%;
+}
+
+.img-productos img{
+  max-height: 200px;
+  max-width: 100%;   
+  object-fit: contain;
+}
+
+.down{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c3144;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.litros {
+  background-color: #c7d6d5;
+  border: solid 1px black;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-left: 5%;
+}
+
