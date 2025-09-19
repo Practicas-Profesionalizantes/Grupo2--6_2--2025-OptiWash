@@ -1,0 +1,78 @@
+.contenedor-asistencia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: #e9e9ec; /* gris clarito del fondo */
+  min-height: 100vh;
+}
+
+/* Navegación de semanas */
+.navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.navegacion button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Tabla */
+.tabla-asistencia {
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.2);
+}
+
+.tabla-asistencia th {
+  background: #1c3144;
+  color: white;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.tabla-asistencia th:first-child {
+  border-top-left-radius: 12px;
+}
+.tabla-asistencia th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.tabla-asistencia td {
+  padding: 0.8rem 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.tabla-asistencia td:first-child {
+  font-weight: bold;
+  text-align: left;
+  color: #2a2a2a;
+}
+
+.tabla-asistencia tr:last-child td {
+  border-bottom: none;
+}
+
+/* Checkboxes */
+.celda-check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #1c3144; /* mismo azul que el header */
+}

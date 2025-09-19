@@ -1,68 +1,76 @@
-drop database if exists OptiWash;
+    DROP DATABASE IF EXISTS OptiWash;
+    CREATE DATABASE optiwash;
 
-CREATE DATABASE OptiWash;
+    use OptiWash;
 
-use OptiWash;
+    -- Módulo Vehículos/Servicios/Cliente
+    CREATE TABLE Cliente(
+        ID INT auto_increment PRIMARY KEY,
+        Nombre VARCHAR(30),
+        Telefono INT
+    );
+    CREATE TABLE Vehiculo (
+        ID int auto_increment PRIMARY KEY,
+        ID_Cliente INT,
+        Patente VARCHAR(10),
+        Marca VARCHAR(50),
+        foreign key (ID_Cliente) REFERENCES Cliente(ID)
+    );
 
--- Módulo Vehículos/Servicios/Cliente
-CREATE TABLE Cliente(
-    ID INT auto_increment PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Telefono INT
-);
-CREATE TABLE Vehiculo (
-    ID int auto_increment PRIMARY KEY,
-    ID_Cliente INT REFERENCES Cliente(ID),
-    Patente VARCHAR(10),
-    Marca VARCHAR(50)
-);
+    CREATE TABLE Servicio (
+        ID int auto_increment PRIMARY KEY,
+        Tipo_Servicio VARCHAR(50),
+        Precio DECIMAL(10,2)
+    );
 
-CREATE TABLE Servicio (
-    ID int auto_increment PRIMARY KEY,
-    Tipo_Servicio VARCHAR(50),
-    Precio DECIMAL(10,2)
-);
+    CREATE TABLE Registro_Lavado (
+        ID int auto_increment PRIMARY KEY,
+        ID_Vehiculo INT ,
+        ID_Servicio INT ,
+        ID_Cliente INT,
+        Fecha_Hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        foreign key(ID_Servicio) REFERENCES servicio(ID),
+        foreign key (ID_Vehiculo)REFERENCES Vehiculo(ID),
+        foreign key (ID_Cliente) references Cliente(ID)
+        
+    );
 
-CREATE TABLE Registro_Lavado (
-    ID int auto_increment PRIMARY KEY,
-    ID_Vehiculo INT REFERENCES Vehiculo(ID),
-    ID_Servicio INT REFERENCES Servicio(ID),
-    ID_Cliente INT REFERENCES Cliente(ID),
-    Fecha_Hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    -- Módulo Asistencias
+    CREATE TABLE Empleado (
+        ID int auto_increment PRIMARY KEY,
+        Nombre VARCHAR(100),
+        Cargo VARCHAR(50)
+    );
 
--- Módulo Asistencias
-CREATE TABLE Empleado (
-    ID int auto_increment PRIMARY KEY,
-    Nombre VARCHAR(100),
-    Cargo VARCHAR(50)
-);
+    CREATE TABLE Asistencia (
+        ID_ int auto_increment PRIMARY KEY,
+        ID_Empleado INT,
+        Fecha DATE DEFAULT (CURRENT_DATE()),
+        Hora_Entrada TIME DEFAULT (CURRENT_TIME())
+        foreign key (ID_Empleado) references Empleado(ID)
+        
+    );
+    -- Módulo Inventario
+    CREATE TABLE Producto (
+        ID int auto_increment PRIMARY KEY,
+        Nombre VARCHAR(50),
+        Litros DECIMAL(10, 2),
+        Img VARCHAR(500),
+        precio_unitario DECIMAL(15,2)
+    );
 
-CREATE TABLE Asistencia (
-    ID_ int auto_increment PRIMARY KEY,
-    ID_Empleado INT REFERENCES Empleado(ID),
-    Fecha DATE DEFAULT (CURRENT_DATE()),
-    Hora_Entrada TIME DEFAULT (CURRENT_TIME())
-);
--- Módulo Inventario
-CREATE TABLE Producto (
-    ID int auto_increment PRIMARY KEY,
-    Nombre VARCHAR(50),
-    Litros DECIMAL(10, 2),
-    Img VARCHAR(500)
-);
-
-CREATE TABLE Movimiento_Inventario (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    ID_Producto INT REFERENCES Producto(ID),
-    Fecha DATE DEFAULT (CURRENT_DATE()),
-    Tipo ENUM('Entrada', 'Salida'),
-    Litros DECIMAL(10, 2)
-);
+    CREATE TABLE Movimiento_Inventario (
+        ID INT AUTO_INCREMENT PRIMARY KEY,
+        ID_Producto INT ,
+        Fecha DATE DEFAULT (CURRENT_DATE()),
+        Tipo ENUM('Entrada', 'Salida'),
+        Litros DECIMAL(10, 2),
+        foreign key ID_Producto references Producto(ID)
+    );
 
 
 -- Insertar datos en la tabla Cliente
-INSERT INTO Cliente (Nombre, Telefono) VALUES 
+INSERT INTO cliente (Nombre, Telefono) VALUES 
 ('Juan Pérez', 912345678),
 ('María López', 987654321),
 ('Carlos Rodríguez', 923456789),
@@ -156,15 +164,14 @@ INSERT INTO Asistencia (ID_Empleado, Fecha, Hora_Entrada) VALUES
 
 -- Insertar datos en la tabla Producto
 INSERT INTO Producto (Nombre, Litros, Img) VALUES 
-('Shampoo para autos',15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Shampoo-Lava-Autos-x-480-cc-ok-3.jpg"),
-('Limpia tapizados', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Limpia-Tapizados-x-480-cc-ok.jpg"),
-('Silicona de goma', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Reviv-Gomas-y-Alfombras-Verde-x-20-lts-ok.jpg"),
-('Silicona de plástico', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Protectant-Aromatizado-x-5-Lt-b.jpg"),
-('Saca bichos', 20, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Removedor-de-Insectos-x-480-cc-ok.jpg"),
-('Desengrasante', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/06/Limpia-Cristales-Listo-para-usar-5-lts-ok.jpg"),
-('Perfume', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2020/06/Fragancia-Ambiental-x-480-cc.jpg"),
-('Cera para brillo', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Componente-2.jpg");
-
+('Shampoo para autos',15, "https://ibb.co/BVXQ6Tbd"),
+('Limpia tapizados', 5, "https://ibb.co/Mynfdp48"),
+('Silicona de goma', 15, "https://ibb.co/bRNLpLp8"),
+('Silicona de plástico', 15, "https://ibb.co/qYpcG7FN"),
+('Saca bichos', 20, "https://ibb.co/LX5MK9C4"),
+('Desengrasante', 5, "https://ibb.co/bMt75dcB"),
+('Perfume', 5, "https://ibb.co/398fPFrx"),
+('Cera para brillo', 5, "https://ibb.co/vvwP6zcQ");
 -- Insertar datos en la tabla Movimiento_Inventario
 INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES 
 (1, '2025-04-15', 'Entrada', 60),

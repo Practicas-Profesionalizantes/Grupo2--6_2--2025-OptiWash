@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import "../style/navbar/nav.css";
 import styles from "../style/navbar/nav.module.css";
 import React from "react";
-import FechaHoraActual from "../componentes/FechaHoraActual.jsx";
+import FechaHoraActual from "./FechaHoraActual.jsx";
 import logo from "../img/logo.png";
 import "../style/navbar/switch.css";
 
