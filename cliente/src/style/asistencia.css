@@ -3,22 +3,22 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background: #e9e9ec; /* gris clarito del fondo */
+  background: #e9e9ec;
   min-height: 100vh;
 }
 
-/* Navegación de semanas */
+/* Navegación */
 .navegacion {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: white;
   padding: 0.6rem 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .navegacion button {
@@ -28,13 +28,24 @@
   cursor: pointer;
 }
 
+/* ✅ Contenedor de scroll vertical y horizontal */
+.tabla-scroll {
+  width: 100%;
+  max-width: 800px;
+  overflow-y: auto; /* ✅ scroll vertical */
+  overflow-x: auto; /* ✅ scroll horizontal */
+  max-height: 350px; /* limita la altura visible en móvil */
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch; /* mejora desplazamiento en iPhone */
+  background: white;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* Tabla */
 .tabla-asistencia {
   border-collapse: collapse;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 6px 6px 12px rgba(0,0,0,0.2);
+  width: 100%;
+  min-width: 600px;
 }
 
 .tabla-asistencia th {
@@ -43,13 +54,6 @@
   padding: 0.8rem 1rem;
   text-align: center;
   font-size: 1rem;
-}
-
-.tabla-asistencia th:first-child {
-  border-top-left-radius: 12px;
-}
-.tabla-asistencia th:last-child {
-  border-top-right-radius: 12px;
 }
 
 .tabla-asistencia td {
@@ -65,14 +69,32 @@
   color: #2a2a2a;
 }
 
-.tabla-asistencia tr:last-child td {
-  border-bottom: none;
-}
-
-/* Checkboxes */
+/* Checkbox */
 .celda-check input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  cursor: pointer;
-  accent-color: #1c3144; /* mismo azul que el header */
+  accent-color: #1c3144;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .contenedor-asistencia {
+    padding: 1rem;
+  }
+
+  .tabla-scroll {
+    max-height: 300px; /* un poco más ajustado */
+  }
+
+  .tabla-asistencia th,
+  .tabla-asistencia td {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabla-scroll {
+    max-height: 250px; /* más compacto aún */
+  }
 }

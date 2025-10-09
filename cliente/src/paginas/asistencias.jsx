@@ -13,7 +13,6 @@ const Asistencia = () => {
 
   const dias = ["L", "M", "X", "J", "V", "S"];
 
-  // Estado: asistencias[empleado][dia] = true/false
   const [asistencias, setAsistencias] = useState(
     empleados.reduce((acc, emp) => {
       acc[emp] = dias.reduce((d, dia) => ({ ...d, [dia]: false }), {});
@@ -21,13 +20,12 @@ const Asistencia = () => {
     }, {})
   );
 
-  // Cambiar solo ese checkbox (empleado + día)
   const toggleAsistencia = (empleado, dia) => {
     setAsistencias((prev) => ({
       ...prev,
       [empleado]: {
         ...prev[empleado],
-        [dia]: !prev[empleado][dia], // 👈 solo cambia ese cuadrado
+        [dia]: !prev[empleado][dia],
       },
     }));
   };
@@ -41,33 +39,35 @@ const Asistencia = () => {
         <button>→</button>
       </div>
 
-      {/* Tabla de asistencias */}
-      <table className="tabla-asistencia">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            {dias.map((dia) => (
-              <th key={dia}>{dia}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {empleados.map((emp) => (
-            <tr key={emp}>
-              <td>{emp}</td>
+      {/* ✅ Contenedor con scroll vertical */}
+      <div className="tabla-scroll">
+        <table className="tabla-asistencia">
+          <thead>
+            <tr>
+              <th>Nombre</th>
               {dias.map((dia) => (
-                <td key={dia} className="celda-check">
-                  <input
-                    type="checkbox"
-                    checked={asistencias[emp][dia]}
-                    onChange={() => toggleAsistencia(emp, dia)}
-                  />
-                </td>
+                <th key={dia}>{dia}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {empleados.map((emp) => (
+              <tr key={emp}>
+                <td>{emp}</td>
+                {dias.map((dia) => (
+                  <td key={dia} className="celda-check">
+                    <input
+                      type="checkbox"
+                      checked={asistencias[emp][dia]}
+                      onChange={() => toggleAsistencia(emp, dia)}
+                    />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

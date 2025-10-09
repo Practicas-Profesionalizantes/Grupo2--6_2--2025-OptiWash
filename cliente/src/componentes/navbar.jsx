@@ -1,86 +1,68 @@
 import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import "../style/navbar/nav.css";
 import styles from "../style/navbar/nav.module.css";
-import React from "react";
-import FechaHoraActual from "./FechaHoraActual.jsx";
 import logo from "../img/logo.png";
-import "../style/navbar/switch.css";
 
-function Nav({ cambiarFondo, temaActual }) {
+function Nav() {
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const toggleMenu = () => setMenuAbierto(!menuAbierto);
+
   return (
-    <div className="nav">
+    <nav className="nav">
       <div className="parte1">
-        <img src={logo} alt="logo" />
-        <div className="navboton">
-          <NavLink
-            to="/inventario"
-            style={{ textDecoration: "none" }}
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
-            }
-          >
-            <h2 className="botones">Inventario</h2>
-          </NavLink>
-          <h2 className="deco">|</h2>
-          <NavLink
-            to="/registro_autos"
-            style={{ textDecoration: "none" }}
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
-            }
-          >
-            <h2 className="botones">Registro</h2>
-          </NavLink>
-          <h2 className="deco">|</h2>
-          <NavLink
-            to="/asistencia"
-            style={{ textDecoration: "none" }}
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
-            }
-          >
-            <h2 className="botones">Asistencia</h2>
-          </NavLink>
+        <button className="hamburguesa" onClick={toggleMenu}>
+          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+        </button>
 
-        </div>
+        <img src={logo} alt="logo" />
       </div>
-          <div className="fecha-hora-centro">
-            <FechaHoraActual/>
-          </div>
-          <div className="tema">
-        <label htmlFor="theme" className="theme">
-          <span className="theme__toggle-wrap">
-            <input
-              id="theme"
-              className="theme__toggle"
-              type="checkbox"
-              role="switch"
-              name="theme"
-                onClick={(e) => e.stopPropagation()}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  cambiarFondo("#14212D");
-                } else {
-                  cambiarFondo("#ffffff");
-                }
-              }}
-            />
-            <span className="theme__fill"   onClick={(e) => e.stopPropagation()}/>
-            <span className="theme__icon"  onClick={(e) => e.stopPropagation()}>
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-              <span className="theme__icon-part" />
-            </span>
-          </span>
-        </label>
-          </div>
-    </div>
+
+      {/* Menú lateral izquierdo */}
+      <div className={`menu-lateral ${menuAbierto ? "activo" : ""}`}>
+        <NavLink
+          to="/inventario"
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.navLink} ${styles.activeLink}`
+              : styles.navLink
+          }
+          onClick={() => setMenuAbierto(false)}
+        >
+          <h2 className="botones">Inventario</h2>
+        </NavLink>
+
+        <NavLink
+          to="/registro_autos"
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.navLink} ${styles.activeLink}`
+              : styles.navLink
+          }
+          onClick={() => setMenuAbierto(false)}
+        >
+          <h2 className="botones">Registro</h2>
+        </NavLink>
+
+        <NavLink
+          to="/asistencia"
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.navLink} ${styles.activeLink}`
+              : styles.navLink
+          }
+          onClick={() => setMenuAbierto(false)}
+        >
+          <h2 className="botones">Asistencia</h2>
+        </NavLink>
+      </div>
+
+      {/* Fondo semitransparente cuando el menú está activo */}
+      {menuAbierto && <div className="overlay" onClick={toggleMenu}></div>}
+    </nav>
   );
 }
 
