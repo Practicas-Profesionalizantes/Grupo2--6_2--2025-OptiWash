@@ -11,15 +11,15 @@ function Nav() {
 
   return (
     <nav className="nav">
-      <div className="parte1">
-        <button className="hamburguesa" onClick={toggleMenu}>
-          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
-          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
-          <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
-        </button>
+      {/* Icono hamburguesa a la izquierda */}
+      <button className="hamburguesa" onClick={toggleMenu}>
+        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+      </button>
 
-        <img src={logo} alt="logo" />
-      </div>
+      {/* Logo a la derecha */}
+      <img src={logo} alt="logo" className="logo" />
 
       {/* Menú lateral izquierdo */}
       <div className={`menu-lateral ${menuAbierto ? "activo" : ""}`}>

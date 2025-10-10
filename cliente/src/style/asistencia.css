@@ -93,8 +93,3 @@
   }
 }
 
-@media (max-width: 480px) {
-  .tabla-scroll {
-    max-height: 250px; /* más compacto aún */
-  }
-}

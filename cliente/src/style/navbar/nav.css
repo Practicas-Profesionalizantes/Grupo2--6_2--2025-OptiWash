@@ -13,40 +13,19 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* ✅ extremos opuestos */
   padding: 0.8rem 1.2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.parte1 {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav img {
+/* ---------- LOGO (derecha) ---------- */
+.logo {
   height: 55px;
   width: auto;
   max-width: 100%;
-}
-
-/* ---------- BOTONES ---------- */
-.botones {
-  background-color: transparent;
-  border: none;
-  color: #C7D6D5;
-  font-family: "Crimson Text", serif;
-  font-size: 20px;
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.botones:hover {
-  color: #ffffff;
-  transform: scale(1.05);
+  margin-left: auto; /* ✅ empuja hacia la derecha */
 }
 
 /* ---------- MENÚ LATERAL IZQUIERDO ---------- */
@@ -59,20 +38,37 @@
   background-color: #1C3144;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* ✅ centra horizontal */
-  justify-content: center;
-    /* ✅ centra vertical */
-  gap: 2rem;
+  align-items: center;   /* ✅ alineado a la izquierda */
+  justify-content: flex-start; /* ✅ comienza desde arriba */
+  padding-top: 4.5rem;
+  gap: 1.5rem;
   transition: left 0.3s ease-in-out;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
 
 .menu-lateral.activo {
-  left: 0; /* ✅ se desliza desde la izquierda */
+  left: 0; /* ✅ aparece desde la izquierda */
 }
 
-/* ---------- FONDO OSCURECIDO (overlay) ---------- */
+/* ---------- BOTONES DEL MENÚ ---------- */
+.botones {
+  background-color: transparent;
+  border: none;
+  color: #C7D6D5;
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.botones:hover {
+  color: black;
+  transform: scale(1.05);
+}
+
+/* ---------- FONDO OSCURO (overlay) ---------- */
 .overlay {
   position: fixed;
   top: 0;
@@ -85,11 +81,15 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-/* ---------- HAMBURGUESA ---------- */
+/* ---------- ICONO HAMBURGUESA (izquierda) ---------- */
 .hamburguesa {
   display: none;
   flex-direction: column;
@@ -110,7 +110,7 @@
   transition: all 0.3s ease;
 }
 
-/* Animación de “X” */
+/* Animación “X” al abrir */
 .barra.activa:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -126,6 +126,10 @@
   .hamburguesa {
     display: flex; /* ✅ visible en móvil */
   }
+
+  .logo {
+    height: 45px;
+  }
 }
 
 @media (min-width: 769px) {
@@ -136,6 +140,8 @@
     height: auto;
     width: auto;
     justify-content: flex-end;
+    align-items: center;
+    padding-top: 0;
     gap: 1.5rem;
     background: transparent;
     box-shadow: none;
