@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import inventarioRoutes from './routes/inventario.js';
 import registroAutosRoutes from "./routes/registro_autos.js";
 import serviciosRoutes from "./routes/servicios.js";
+
 dotenv.config();
 
 const app = express();

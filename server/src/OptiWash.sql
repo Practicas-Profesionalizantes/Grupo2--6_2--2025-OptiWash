@@ -163,22 +163,22 @@ INSERT INTO Asistencia (ID_Empleado, Fecha, Hora_Entrada) VALUES
 (9, '2025-05-04', '09:30:00');
 
 -- Insertar datos en la tabla Producto
-INSERT INTO Producto (Nombre, Litros, Img) VALUES 
-('Shampoo para autos',15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Shampoo-Lava-Autos-x-480-cc-ok-3.jpg"),
-('Limpia tapizados', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Limpia-Tapizados-x-480-cc-ok.jpg"),
-('Silicona de goma', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Reviv-Gomas-y-Alfombras-Verde-x-20-lts-ok.jpg"),
-('Silicona de plástico', 15, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Protectant-Aromatizado-x-5-Lt-b.jpg"),
-('Saca bichos', 20, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Removedor-de-Insectos-x-480-cc-ok.jpg"),
-('Desengrasante', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/06/Limpia-Cristales-Listo-para-usar-5-lts-ok.jpg"),
-('Perfume', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2020/06/Fragancia-Ambiental-x-480-cc.jpg"),
-('Cera para brillo', 5, "https://www.fullcarweb.com.ar/wp-content/uploads/2019/01/Componente-2.jpg");
+
 -- Insertar datos en la tabla Movimiento_Inventario
 INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Litros) VALUES 
 (1, '2025-04-15', 'Entrada', 60),
 (2, '2025-04-15', 'Entrada', 40),
 (3, '2025-04-16', 'Entrada', 50),
 (4, '2025-04-16', 'Entrada', 30),
-(5, '2025-04-17', 'Entrada', 45),
+(5, '2025-04-17', 'Entrada', 45),INSERT INTO Producto (Nombre, Litros, Img) VALUES 
+('Shampoo para autos',15, "https://i.ibb.co/SXhMmVbW/Shampoo.png"),
+('Limpia tapizados', 5, "https://i.ibb.co/NgxrRpP1/Limpia-Tapizados.png"),
+('Silicona de goma', 15, "https://i.ibb.co/G3Ckgkgb/Silicona-De-Goma.png"),
+('Silicona de plástico', 15, "https://i.ibb.co/1GTPV7Jr/Silicona-De-Plastico.png"),
+('Saca bichos', 20, "https://i.ibb.co/0Rtk5YfP/Saca-Bicho.png"),
+('Desengrasante', 5, "https://i.ibb.co/mVpS5zfq/Desengrasante.png"),
+('Perfume', 5, "https://i.ibb.co/nNV3K1gX/Perfume.png"),
+('Cera para brillo', 5, "https://i.ibb.co/R4v0kHgB/Cera-Brillo.png");
 (1, '2025-04-20', 'Salida', 10),
 (2, '2025-04-21', 'Salida', 10),
 (3, '2025-04-22', 'Salida', 5),

@@ -26,7 +26,7 @@ function Inventario() {
           <div className="tarjetas-i" key={p.ID}>
             <span className="Nombre">{p.Nombre}</span>
             <div className='img-productos'>
-              <img src={p.Img} alt={p.Nombre} />
+              <img src={p.Img} alt={p.Nombre}/>
             </div>
             <div className="down">
               <p>Total:</p>
