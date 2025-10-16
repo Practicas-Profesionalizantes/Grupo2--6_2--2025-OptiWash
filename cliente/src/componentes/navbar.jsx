@@ -10,8 +10,10 @@ function Nav() {
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
   return (
+    
     <nav className="nav">
       {/* Icono hamburguesa a la izquierda */}
+      
       <button className="hamburguesa" onClick={toggleMenu}>
         <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
         <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
@@ -23,6 +25,10 @@ function Nav() {
 
       {/* Menú lateral izquierdo */}
       <div className={`menu-lateral ${menuAbierto ? "activo" : ""}`}>
+        <div className="men">
+          <h2 className=" men2">Menu</h2>
+      </div>
+        <span className="linea"></span>
         <NavLink
           to="/inventario"
           className={({ isActive }) =>
@@ -32,8 +38,9 @@ function Nav() {
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones">Inventario</h2>
+          <h2 className="botones" >Inventario</h2>
         </NavLink>
+        <span className="linea1"></span>
 
         <NavLink
           to="/registro_autos"
@@ -45,7 +52,10 @@ function Nav() {
           onClick={() => setMenuAbierto(false)}
         >
           <h2 className="botones">Registro</h2>
+
+
         </NavLink>
+        <span className="linea1"></span>
 
         <NavLink
           to="/asistencia"
@@ -57,7 +67,9 @@ function Nav() {
           onClick={() => setMenuAbierto(false)}
         >
           <h2 className="botones">Asistencia</h2>
+
         </NavLink>
+        <span className="linea1"></span>
       </div>
 
       {/* Fondo semitransparente cuando el menú está activo */}

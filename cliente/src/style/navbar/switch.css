@@ -1,4 +1,7 @@
-/* Default */
+* {
+    font-family: 'Inter', sans-serif;
+
+}
 .theme {
   display: flex;
   align-items: center;

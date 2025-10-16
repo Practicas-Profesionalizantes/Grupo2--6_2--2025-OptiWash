@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/asistencia.css";
 
+
 const Asistencia = () => {
   const empleados = [
     "Jaimito Chambi",
@@ -13,6 +14,7 @@ const Asistencia = () => {
 
   const dias = ["L", "M", "X", "J", "V", "S"];
 
+  // Estado: asistencias[empleado][dia] = true/false
   const [asistencias, setAsistencias] = useState(
     empleados.reduce((acc, emp) => {
       acc[emp] = dias.reduce((d, dia) => ({ ...d, [dia]: false }), {});
@@ -20,6 +22,7 @@ const Asistencia = () => {
     }, {})
   );
 
+  // Cambia el valor de asistencia al tocar una celda
   const toggleAsistencia = (empleado, dia) => {
     setAsistencias((prev) => ({
       ...prev,
@@ -39,7 +42,7 @@ const Asistencia = () => {
         <button>→</button>
       </div>
 
-      {/* ✅ Contenedor con scroll vertical */}
+      {/* Tabla de asistencia */}
       <div className="tabla-scroll">
         <table className="tabla-asistencia">
           <thead>
@@ -55,12 +58,9 @@ const Asistencia = () => {
               <tr key={emp}>
                 <td>{emp}</td>
                 {dias.map((dia) => (
-                  <td key={dia} className="celda-check">
-                    <input
-                      type="checkbox"
-                      checked={asistencias[emp][dia]}
-                      onChange={() => toggleAsistencia(emp, dia)}
-                    />
+                  <td key={dia} className="celda-dia">
+                    <h2 className="selec"></h2>
+                    
                   </td>
                 ))}
               </tr>
