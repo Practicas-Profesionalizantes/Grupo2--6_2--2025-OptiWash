@@ -5,6 +5,8 @@ import Home from "./paginas/home";
 import Asistencia from "./paginas/asistencias";
 import Registro_autos from "./paginas/registro_autos";
 import Nav from "./componentes/navbar";
+import Editar from "./componentes/editar"; // o el componente que quieras abrir
+
 
 function App() {
   const [tema, setTema] = useState('#ffffff');
@@ -25,6 +27,7 @@ function App() {
               <Route path="/inventario" element={<Inventario />}/>
               <Route path="/asistencia" element={<Asistencia />}/>
               <Route path="/registro_autos" element={<Registro_autos />}/>
+              <Route path="/editar" element={<Editar />} />
             </Routes>
           
         </div>

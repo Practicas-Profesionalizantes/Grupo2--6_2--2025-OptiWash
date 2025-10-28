@@ -43,28 +43,31 @@
 
 .botones {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;     /* 🔥 centra horizontalmente */
+  align-items: center;
+  gap: 12px;                   /* 🔥 espacio entre los botones */
   margin-top: 15px;
+}
+
+.cancelar,
+.confirmar {
+  min-width: 100px;            /* 🔥 mismo ancho visual */
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .cancelar {
   background-color: #7a5550;
   color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 .confirmar {
   background-color: #497558;
   color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 .cancelar:hover {

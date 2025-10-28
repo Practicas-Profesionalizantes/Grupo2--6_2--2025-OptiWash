@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/editar.css";
+import { Link } from "react-router-dom";
+
 
 function RegistroForm({ modo, registroActual, onCerrar, onGuardar }) {
   const [form, setForm] = useState({
@@ -35,8 +37,8 @@ function RegistroForm({ modo, registroActual, onCerrar, onGuardar }) {
       } else {
         await axios.post("/api/registros", form);
       }
-      onGuardar(); // recarga registros
-      onCerrar();  // cierra modal
+      onGuardar(); 
+      onCerrar();  
     } catch (err) {
       console.error("Error al guardar registro:", err);
     }
@@ -88,12 +90,12 @@ function RegistroForm({ modo, registroActual, onCerrar, onGuardar }) {
         />
 
         <div className="botones">
-          <button className="cancelar" onClick={onCerrar}>
-            Cancelar
-          </button>
-          <button className="confirmar" onClick={handleSubmit}>
-            Confirmar
-          </button>
+          <Link to="/registro_autos" style={{ textDecoration: "none" }}>
+            <button className="cancelar" onClick={onCerrar}>Cancelar</button>
+          </Link>
+          <Link to="/registro_autos" style={{ textDecoration: "none" }}>
+            <button className="confirmar" onClick={handleSubmit}>Confirmar</button>
+          </Link>
         </div>
       </div>
     </div>

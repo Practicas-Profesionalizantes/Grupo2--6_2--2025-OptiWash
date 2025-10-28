@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/registro_autos.css";
+import { Link } from "react-router-dom";
+
 
 function RegistroAuto() {
   const [registros, setRegistros] = useState([]);
@@ -26,8 +28,12 @@ function RegistroAuto() {
   return (
     <div className="registro-container">
       <div className="acciones">
-        <button className="btn editar">Editar</button>
-        <button className="btn anadir">Añadir</button>
+        <Link to="/editar" style={{ textDecoration: "none" }}>
+          <button className="btn editar">Editar</button>
+        </Link>
+        <Link to="/editar" style={{ textDecoration: "none" }}>
+          <button className="btn anadir">Añadir</button>
+        </Link>
       </div>
 
       <div className="lista-registros">
