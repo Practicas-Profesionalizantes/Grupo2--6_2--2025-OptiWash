@@ -25,16 +25,20 @@ router.get('/', (req, res) => {
 });
 
 // ==========================
-// POST: crear un nuevo registro
+// POST: crear un nuevo registro (sin necesidad de id_servicio manual)
 // ==========================
 router.post('/', (req, res) => {
   const { cliente, modelo, patente, telefono, id_servicio } = req.body;
 
-  if (!cliente || !modelo || !patente || !telefono || !id_servicio) {
+  // Si no se envía id_servicio, se usa 1 por defecto (Lavado Básico)
+  const servicioAsignado = id_servicio || 1;
+
+  // Validar datos mínimos requeridos
+  if (!cliente || !modelo || !patente || !telefono) {
     return res.status(400).json({ mensaje: 'Faltan datos' });
   }
 
-  // 1. Insertar cliente
+  // 1️⃣ Insertar cliente
   db.query(
     'INSERT INTO Cliente (Nombre, Telefono) VALUES (?, ?)',
     [cliente, telefono],
@@ -42,7 +46,7 @@ router.post('/', (req, res) => {
       if (err) return res.status(500).json({ mensaje: 'Error al crear cliente' });
       const id_cliente = resultCliente.insertId;
 
-      // 2. Insertar vehículo
+      // 2️⃣ Insertar vehículo
       db.query(
         'INSERT INTO Vehiculo (ID_Cliente, Patente, Marca) VALUES (?, ?, ?)',
         [id_cliente, patente, modelo],
@@ -50,13 +54,14 @@ router.post('/', (req, res) => {
           if (err) return res.status(500).json({ mensaje: 'Error al crear vehículo' });
           const id_vehiculo = resultVehiculo.insertId;
 
-          // 3. Insertar registro de lavado
+          // 3️⃣ Insertar registro de lavado con servicio asignado
           db.query(
             'INSERT INTO Registro_Lavado (ID_Cliente, ID_Vehiculo, ID_Servicio) VALUES (?, ?, ?)',
-            [id_cliente, id_vehiculo, id_servicio],
+            [id_cliente, id_vehiculo, servicioAsignado],
             (err, resultRegistro) => {
-              if (err) return res.status(500).json({ mensaje: 'Error al crear registro' });
-              res.json({ mensaje: 'Registro agregado', id: resultRegistro.insertId });
+              if (err)
+                return res.status(500).json({ mensaje: 'Error al crear registro' });
+              res.json({ mensaje: '✅ Registro agregado correctamente', id: resultRegistro.insertId });
             }
           );
         }
@@ -72,11 +77,12 @@ router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { cliente, modelo, patente, telefono, id_servicio } = req.body;
 
-  if (!cliente || !modelo || !patente || !telefono || !id_servicio) {
+  const servicioAsignado = id_servicio || 1;
+
+  if (!cliente || !modelo || !patente || !telefono) {
     return res.status(400).json({ mensaje: 'Faltan datos' });
   }
 
-  // Buscar IDs relacionados
   db.query(
     'SELECT ID_Cliente, ID_Vehiculo FROM Registro_Lavado WHERE ID = ?',
     [id],
@@ -102,13 +108,13 @@ router.put('/:id', (req, res) => {
         id_vehiculo,
       ]);
 
-      // Actualizar servicio
+      // Actualizar servicio (usando el valor por defecto si no se envía)
       db.query(
         'UPDATE Registro_Lavado SET ID_Servicio = ? WHERE ID = ?',
-        [id_servicio, id],
+        [servicioAsignado, id],
         (err) => {
           if (err) return res.status(500).json({ mensaje: 'Error al actualizar registro' });
-          res.json({ mensaje: 'Registro actualizado' });
+          res.json({ mensaje: '✅ Registro actualizado correctamente' });
         }
       );
     }
@@ -128,7 +134,7 @@ router.delete('/:id', (req, res) => {
       return res.status(404).json({ mensaje: 'Registro no encontrado' });
     }
 
-    res.json({ mensaje: 'Registro eliminado' });
+    res.json({ mensaje: '🗑️ Registro eliminado correctamente' });
   });
 });
 
