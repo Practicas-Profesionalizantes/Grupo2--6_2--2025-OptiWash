@@ -121,3 +121,71 @@
     padding: 0.3rem 0.6rem;
   }
 }
+/* ===== 🔹 MENÚ LATERAL MÓVIL ===== */
+
+.hamburguesa {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 25px;
+  width: 30px;
+  z-index: 1001; /* 🔹 asegura que esté por encima del overlay */
+}
+
+.barra {
+  background-color: white;
+  height: 3px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* Menú lateral */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: -250px; /* oculto por defecto */
+  width: 250px;
+  height: 100%;
+  background-color: #1c3144;
+  color: white;
+  padding-top: 70px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease;
+  z-index: 1002; /* 🔹 más alto que el overlay */
+}
+
+.menu-lateral.activo {
+  left: 0; /* se desplaza hacia dentro */
+}
+
+.men2 {
+  text-align: center;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+}
+
+.linea,
+.linea1 {
+  display: block;
+  height: 1px;
+  background-color: #ffffff56;
+  margin: 10px 0;
+}
+
+/* Overlay oscuro detrás del menú */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000; /* 🔹 debajo del menú lateral */
+  transition: opacity 0.3s ease;
+}
+

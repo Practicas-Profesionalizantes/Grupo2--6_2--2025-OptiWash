@@ -6,6 +6,7 @@ import Asistencia from "./paginas/asistencias";
 import Registro_autos from "./paginas/registro_autos";
 import Nav from "./componentes/navbar";
 import Editar from "./componentes/editar"; // o el componente que quieras abrir
+import Empleados from "./paginas/empleados"; // 👈 asegúrate de tenerlo
 
 
 function App() {
@@ -28,7 +29,10 @@ function App() {
               <Route path="/asistencia" element={<Asistencia />}/>
               <Route path="/registro_autos" element={<Registro_autos />}/>
               <Route path="/editar" element={<Editar />} />
+              <Route path="/empleados" element={<Empleados />} />
+
             </Routes>
+
           
         </div>
       </BrowserRouter>

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import "../style/navbar/nav.css";
-import styles from "../style/navbar/nav.module.css";
 import logo from "../img/logo.png";
 
 function Nav() {
@@ -33,8 +32,7 @@ function Nav() {
           to="/inventario"
           className={({ isActive }) =>
             isActive
-              ? `${styles.navLink} ${styles.activeLink}`
-              : styles.navLink
+              ? "navLink activeLink" : "navLink"
           }
           onClick={() => setMenuAbierto(false)}
         >
@@ -46,8 +44,7 @@ function Nav() {
           to="/registro_autos"
           className={({ isActive }) =>
             isActive
-              ? `${styles.navLink} ${styles.activeLink}`
-              : styles.navLink
+              ? "navLink activeLink" : "navLink"
           }
           onClick={() => setMenuAbierto(false)}
         >
@@ -61,8 +58,7 @@ function Nav() {
           to="/asistencia"
           className={({ isActive }) =>
             isActive
-              ? `${styles.navLink} ${styles.activeLink}`
-              : styles.navLink
+              ? "navLink activeLink" : "navLink"
           }
           onClick={() => setMenuAbierto(false)}
         >
@@ -70,6 +66,19 @@ function Nav() {
 
         </NavLink>
         <span className="linea1"></span>
+        <NavLink
+          to="/Empleados"
+          className={({ isActive }) =>
+            isActive
+              ? "navLink activeLink" : "navLink"
+          }
+          onClick={() => setMenuAbierto(false)}
+        >
+          <h2 className="botones">empleados</h2>
+
+        </NavLink>
+        <span className="linea1"></span>
+
       </div>
 
       {/* Fondo semitransparente cuando el menú está activo */}

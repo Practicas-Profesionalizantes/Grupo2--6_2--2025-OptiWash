@@ -4,7 +4,6 @@ import "../style/editar.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function Editar() {
-  // Estado del formulario
   const [form, setForm] = useState({
     cliente: "",
     modelo: "",
@@ -14,23 +13,22 @@ function Editar() {
 
   const navigate = useNavigate();
 
-  // Manejar los cambios de los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  // Enviar los datos al backend
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await axios.post("/api/registros", form);
-      alert("✅ Registro agregado correctamente");
-      navigate("/registro_autos");
+
+      // ✅ Ahora solo pasamos un estado al volver
+      navigate("/registro_autos", { state: { nuevo: true, mensaje: "✅ Registro agregado correctamente" } });
+
     } catch (error) {
       console.error("Error al agregar registro:", error);
-      alert("❌ Error al agregar registro. Revisa la consola.");
+      navigate("/registro_autos", { state: { error: "❌ Error al agregar registro" } });
     }
   };
 
