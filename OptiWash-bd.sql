@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS OptiWash;
-CREATE DATABASE optiwash;
+CREATE DATABASE OptiWash;
 
 use OptiWash;
 
@@ -63,25 +63,26 @@ CREATE TABLE Asistencia (
 	Fecha_hora datetime not null,
 	estado enum('Presente','Ausente','Tarde'),
 	foreign key (ID_Empleado) references Empleado(ID)
-	
 );
 -- Módulo Inventario
 CREATE TABLE Producto (
-	ID int auto_increment PRIMARY KEY,
-	Nombre VARCHAR(50),
-	Bidon int unsigned not null,
-	Img VARCHAR(500),
-	precio_unitario DECIMAL(15,2)
+    ID int auto_increment PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Bidon INT NOT NULL,
+    Img VARCHAR(500),
+    precio_unitario DECIMAL(15,2)
 );
 
 CREATE TABLE Movimiento_Inventario (
-	ID INT AUTO_INCREMENT PRIMARY KEY,
-	ID_Producto INT ,
-	Fecha DATE DEFAULT (CURRENT_DATE()),
-	Tipo ENUM('Entrada', 'Salida'),
-	Bidon int unsigned not null,
-	foreign key (ID_Producto) references Producto(ID)
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Producto INT,
+    Fecha DATE DEFAULT (CURRENT_DATE()),
+    Tipo ENUM('Entrada', 'Salida'),
+    Bidon int unsigned not null,
+    precio_momento DECIMAL(15,2) DEFAULT 0.00,
+    foreign key (ID_Producto) references Producto(ID)
 );
+
 
 
 INSERT INTO Cliente (Nombre, Telefono) VALUES
@@ -99,10 +100,10 @@ INSERT INTO Vehiculo (ID_Cliente, Patente, Marca) VALUES
 
 
 INSERT INTO Servicio (Tipo_Servicio, Precio) VALUES
-('Lavado exterior básico', 2500.00),
-('Lavado completo con cera', 4000.00),
-('Limpieza de tapizados', 3500.00),
-('Lavado premium + perfume', 5000.00);
+('Lavado exterior básico', 2500),
+('Lavado completo con cera', 4000),
+('Limpieza de tapizados', 3500),
+('Lavado premium + perfume', 5000);
 
 
 INSERT INTO Registro_Lavado (ID_Vehiculo, ID_Servicio, ID_Cliente, nota) VALUES
@@ -189,35 +190,29 @@ INSERT INTO Producto (Nombre, Bidon, Img, precio_unitario) VALUES
 ('Perfume', 5, "https://i.ibb.co/nNV3K1gX/Perfume.png", 500),
 ('Cera para brillo', 5, "https://i.ibb.co/R4v0kHgB/Cera-Brillo.png", 1030);
 
-
-INSERT INTO Movimiento_Inventario (ID_Producto, Tipo, Bidon) VALUES
-(1, 'Entrada', 10),
-(2, 'Entrada', 5),
-(3, 'Salida', 2),
-(4, 'Salida', 3),
-(5, 'Entrada', 15),
-(6, 'Salida', 1),
-(7, 'Entrada', 8),
-(8, 'Salida', 2);
-
 DELIMITER //
 
 CREATE TRIGGER Movimiento_Productos
 AFTER UPDATE ON Producto
 FOR EACH ROW
 BEGIN
-    DECLARE diferencia DECIMAL(10,2);
+    DECLARE diferencia INT;
     SET diferencia = NEW.Bidon - OLD.Bidon;
 
     IF diferencia > 0 THEN
         -- Entrada: se agregaron litros
-        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Bidon)
-        VALUES (NEW.ID, NOW(), 'Entrada', diferencia);
+        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Bidon, precio_momento)
+        VALUES (NEW.ID, NOW(), 'Entrada', diferencia, NEW.precio_unitario);
     ELSEIF diferencia < 0 THEN
         -- Salida: se usaron litros
-        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Bidon)
-        VALUES (NEW.ID, NOW(), 'Salida', ABS(diferencia));
+        INSERT INTO Movimiento_Inventario (ID_Producto, Fecha, Tipo, Bidon, precio_momento)
+        VALUES (NEW.ID, NOW(), 'Salida', ABS(diferencia), NEW.precio_unitario);
     END IF;
 END//
 
 DELIMITER ;
+-- Simular uso de productos en octubre
+UPDATE Producto SET Bidon = 10 WHERE ID = 1; -- Shampoo: uso 5 litros
+UPDATE Producto SET Bidon = 3 WHERE ID = 2;  -- Limpia tapizados: uso 2 litros
+UPDATE Producto SET Bidon = 12 WHERE ID = 3; -- Silicona goma: uso 3 litros
+UPDATE Producto SET Bidon = 18 WHERE ID = 5; -- Saca bichos: uso 2 litros
