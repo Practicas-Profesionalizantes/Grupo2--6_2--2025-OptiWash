@@ -1,0 +1,131 @@
+/* DetalleInformeAutos.css */
+
+.detalle-container {
+  min-height: 100vh;
+  background-color: #D9D9D9;
+  padding: 1.5rem;
+}
+
+.detalle-wrapper {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.detalle-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.detalle-fecha {
+  text-align: center;
+  color: #1f2937;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* Tabla */
+.tabla-container {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.tabla-lavados {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-lavados thead {
+  background-color: #1f2937;
+  color: white;
+}
+
+.tabla-lavados th {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.tabla-lavados tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-lavados tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabla-lavados tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.tabla-lavados td {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.empty-cell {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem !important;
+}
+
+/* Ganancia total */
+.ganancia-total {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ganancia-total h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+/* Botón volver */
+.btn-volver {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-volver:hover {
+  background-color: #374151;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid transparent;
+  border-top-color: #1f2937;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
