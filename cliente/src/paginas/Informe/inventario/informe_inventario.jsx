@@ -1,4 +1,3 @@
-// InformeInventario.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../InformeMenu.css';

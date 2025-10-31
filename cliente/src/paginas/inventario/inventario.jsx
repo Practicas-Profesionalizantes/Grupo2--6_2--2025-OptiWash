@@ -1,4 +1,4 @@
-// inventario.jsx
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ModalMovimiento from '../../componentes/inventario/ModalMovimiento.jsx';
@@ -7,7 +7,7 @@ import './inventario.css';
 function Inventario() {
   const [productos, setProductos] = useState([]);
   const [modalAbierto, setModalAbierto] = useState(false);
-  const [tipoModal, setTipoModal] = useState(null); // 'agregar' o 'utilizar'
+  const [tipoModal, setTipoModal] = useState(null); 
 
   useEffect(() => {
     cargarProductos();

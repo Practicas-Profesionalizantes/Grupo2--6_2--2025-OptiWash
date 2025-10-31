@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./VistaDetallada.css";
+import volver from "../../assets/asistencia/volver.png";
 
 function VistaDetallada({ fecha, onClose, onGuardar }) {
   const [empleados, setEmpleados] = useState([]);
@@ -23,7 +25,7 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
       setError(null);
 
       try {
-        const resEmpleados = await axios.get("/api/empleados", { signal });
+        const resEmpleados = await axios.get("/api/empleado", { signal });
         const listaEmpleados = resEmpleados.data.data || [];
         setEmpleados(listaEmpleados);
 
@@ -84,7 +86,7 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setMensaje("");
 
     try {
@@ -133,16 +135,16 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
   };
 
   if (loading) return (
-    <div className="modal-overlay">
-      <div className="modal-contenido">
+    <div className="vista-detallada-modal">
+      <div className="vista-detallada-contenido">
         <p>Cargando empleados...</p>
       </div>
     </div>
   );
 
   if (error) return (
-    <div className="modal-overlay">
-      <div className="modal-contenido">
+    <div className="vista-detallada-modal">
+      <div className="vista-detallada-contenido">
         <p>Error: {error.message}</p>
         <button onClick={onClose}>Cerrar</button>
       </div>
@@ -150,21 +152,34 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
   );
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
-        <h2>
-          {obtenerNombreDia(fecha)}
-          <span className="fecha-pequeña"> {fecha}</span>
-        </h2>
+    <div className="vista-detallada-modal" onClick={onClose}>
+      <div className="vista-detallada-contenido" onClick={(e) => e.stopPropagation()}>
+        <div className="header-row">
+          <div 
+            className="btn-volver" 
+            onClick={onClose}
+            style={{ backgroundImage: `url(${volver})` }}
+          />
+          <h2>
+            {obtenerNombreDia(fecha)} <span className="fecha-inline">{fecha}</span>
+          </h2>
+          <button 
+            className="btn-confirmar-header" 
+            onClick={handleSubmit}
+            type="button"
+          >
+            Confirmar
+          </button>
+        </div>
         
         <form onSubmit={handleSubmit}>
           <table>
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Estado</th>
-                <th>Vale ($)</th>
-                <th>Pagado</th>
+                <th>Asis.</th>
+                <th>P.D.</th>
+                <th>Vale</th>
               </tr>
             </thead>
             <tbody>
@@ -179,11 +194,18 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
                         value={datos.estado || ""}
                         onChange={(e) => handleInputChange(empleado.ID, 'estado', e.target.value)}
                       >
-                        <option value="">Seleccionar</option>
+                        <option value="">-</option>
                         <option value="Presente">Presente</option>
                         <option value="Ausente">Ausente</option>
                         <option value="Tarde">Tarde</option>
                       </select>
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={datos.pagado || false}
+                        onChange={(e) => handleInputChange(empleado.ID, 'pagado', e.target.checked)}
+                      />
                     </td>
                     <td>
                       <input
@@ -195,26 +217,14 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
                         placeholder="0.00"
                       />
                     </td>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={datos.pagado || false}
-                        onChange={(e) => handleInputChange(empleado.ID, 'pagado', e.target.checked)}
-                      />
-                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-
-          <div className="modal-acciones">
-            <button type="submit">Guardar</button>
-            <button type="button" onClick={onClose}>Cancelar</button>
-          </div>
         </form>
 
-        {mensaje && <p className="mensaje">{mensaje}</p>}
+        {mensaje && <div className="mensaje-flotante">{mensaje}</div>}
       </div>
     </div>
   );

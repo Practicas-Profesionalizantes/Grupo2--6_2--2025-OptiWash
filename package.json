@@ -3,7 +3,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cliente": "cd cliente && npm run dev",
+    "cliente": "cd cliente && npm run dev -- --host",
     "server": "cd server/src && node server.js",
     "dev": "concurrently \"npm run server\" \"npm run cliente\""
 
