@@ -8,9 +8,10 @@ import InformeMenu from "./paginas/Informe/informeMenu.jsx";
 import DetalleInformeAutos from "./paginas/Informe/Autos-Lavados/detalleinformeAutos.jsx";
 import DetalleInformeAsistencias from "./paginas/Informe/asistencias/DetalleInformeAsistencia.jsx";
 import DetalleInformeInventario from "./paginas/Informe/inventario/DetalleInformeInventario.jsx";
-import Empleados from "./paginas/Empelados/empleados.jsx";
+import Empleados from "./paginas/Empleados/empleados.jsx";
 import './app.css'
 import RegistroAuto from "./paginas/Registro_Autos/registro_autos.jsx";
+import Aniadir_empleado from "./componentes/aniadir_empleado/aniadir_empleado.jsx";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/informes/autos/detalle" element={<DetalleInformeAutos />} />
               <Route path="/informes/asistencias/detalle" element={<DetalleInformeAsistencias />} />
               <Route path="/informes/inventario/detalle" element={<DetalleInformeInventario />} />
+              <Route path="/aniadir_empleado" element={<Aniadir_empleado />} />
 
               <Route path="/empleados" element={<Empleados />} />
               <Route path="/registro_autos" element={<RegistroAuto></RegistroAuto>} />
