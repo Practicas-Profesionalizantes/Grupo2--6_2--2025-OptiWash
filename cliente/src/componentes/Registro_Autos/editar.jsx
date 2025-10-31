@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./editar.css";
+import styles from "./editar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function Editar() {
@@ -33,8 +33,8 @@ function Editar() {
   };
 
   return (
-    <div className="overlay">
-      <div className="ventana-form">
+    <div className={styles.overlay}>
+      <div className={styles['ventana-form']}>
         <h2>Añadir Registro</h2>
 
         <form onSubmit={handleSubmit}>
@@ -74,13 +74,13 @@ function Editar() {
             required
           />
 
-          <div className="botones">
+          <div className={styles.botones}>
             <Link to="/registro_autos" style={{ textDecoration: "none" }}>
-              <button type="button" className="cancelar">
+              <button type="button" className={styles.cancelar}>
                 Cancelar
               </button>
             </Link>
-            <button type="submit" className="confirmar">
+            <button type="submit" className={styles.confirmar}>
               Confirmar
             </button>
           </div>

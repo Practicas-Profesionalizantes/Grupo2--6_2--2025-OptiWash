@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ModalMovimiento from '../../componentes/inventario/ModalMovimiento.jsx';
-import './inventario.css';
+import styles from './inventario.module.css';
 
 function Inventario() {
   const [productos, setProductos] = useState([]);
@@ -38,28 +38,28 @@ function Inventario() {
   };
 
   return (
-    <div className='cuerpo'>
-      <div className="opciones">
-        <button className="boton-i" id="agregar" onClick={() => abrirModal('agregar')}>
+    <div className={styles.cuerpo}>
+      <div className={styles.opciones}>
+        <button className={styles['boton-i']} id="agregar" onClick={() => abrirModal('agregar')}>
           Agregar
         </button>
-        <button className="boton-i" id="utilizado" onClick={() => abrirModal('utilizar')}>
+        <button className={styles['boton-i']} id="utilizado" onClick={() => abrirModal('utilizar')}>
           Utilizado
         </button>
       </div>
 
-      <div className="contenedor">
+      <div className={styles.contenedor}>
         {productos.map(p => (
-          <div className="tarjetas-i" key={p.ID}>
-            <span className="Nombre">{p.Nombre}</span>
-            <div className='img-productos'>
+          <div className={styles['tarjetas-i']} key={p.ID}>
+            <span className={styles.Nombre}>{p.Nombre}</span>
+            <div className={styles['img-productos']}>
               <img src={p.Img} alt={p.Nombre}/>
             </div>
-            <div className="down">
+            <div className={styles.down}>
               <p>Total:</p>
-              <h2 className="litros">{p.Bidon} Bidones</h2>
+              <h2 className={styles.litros}>{p.Bidon} Bidones</h2>
             </div>
-            <div className="precio-tarjeta">
+            <div className={styles['precio-tarjeta']}>
               ${parseFloat(p.precio_unitario || 0).toFixed(2)}/Bidón
             </div>
           </div>

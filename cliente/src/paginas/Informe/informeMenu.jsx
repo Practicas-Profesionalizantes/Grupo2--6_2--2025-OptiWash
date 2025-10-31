@@ -6,7 +6,7 @@ import InformeAutos from './Autos-Lavados/informe_autosLavados';
 import InformeAsistencias from './asistencias/informe_asistencias';
 import InformeInventario from './inventario/informe_inventario';
 import calendario from '../../assets/informe/calendario.png'
-import './informeMenu.css';
+import styles from './InformeMenu.module.css';
 
 export default function InformeMenu() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,57 +43,57 @@ export default function InformeMenu() {
   };
 
   return (
-    <div className="informe-container">
-      <div className="informe-wrapper">
-        <h1 className="informe-title">Informes</h1>
+    <div className={styles['informe-container']}>
+      <div className={styles['informe-wrapper']}>
+        <h1 className={styles['informe-title']}>Informes</h1>
 
         {/* Botones de navegación */}
-        <div className="nav-buttons">
+        <div className={styles['nav-buttons']}>
           <button
             onClick={() => cambiarModulo('inventario')}
-            className={`nav-button ${moduloActivo === 'inventario' ? 'active' : ''}`}
+            className={`${styles['nav-button']} ${moduloActivo === 'inventario' ? styles.active : ''}`}
           >
             Inventario
           </button>
           <button
             onClick={() => cambiarModulo('asistencias')}
-            className={`nav-button ${moduloActivo === 'asistencias' ? 'active' : ''}`}
+            className={`${styles['nav-button']} ${moduloActivo === 'asistencias' ? styles.active : ''}`}
           >
             Asistencias
           </button>
           <button
             onClick={() => cambiarModulo('autos')}
-            className={`nav-button ${moduloActivo === 'autos' ? 'active' : ''}`}
+            className={`${styles['nav-button']} ${moduloActivo === 'autos' ? styles.active : ''}`}
           >
             Autos
           </button>
         </div>
 
         {/* Header del módulo con botón de calendario */}
-        <div className="module-header">
-          <h2 className="module-title">
+        <div className={styles['module-header']}>
+          <h2 className={styles['module-title']}>
             {moduloActivo === 'autos' ? 'Autos' : moduloActivo === 'asistencias' ? 'Asistencias' : 'Inventario'}
           </h2>
-          
-          <div className="calendar-menu-container">
-            <button 
-              className="calendar-button"
+
+          <div className={styles['calendar-menu-container']}>
+            <button
+              className={styles['calendar-button']}
               onClick={toggleMenu}
             >
               {/* PON AQUÍ TU ÍCONO DE CALENDARIO */}
-              <span className="calendar-icon"><img src={calendario}/></span>
+              <span className={styles['calendar-icon']}><img src={calendario}/></span>
             </button>
 
             {mostrarMenu && (
-              <div className="dropdown-menu">
+              <div className={styles['dropdown-menu']}>
                 <button
-                  className={`dropdown-item ${agrupacion === 'semana' ? 'active' : ''}`}
+                  className={`${styles['dropdown-item']} ${agrupacion === 'semana' ? styles.active : ''}`}
                   onClick={() => cambiarAgrupacion('semana')}
                 >
                   Semana
                 </button>
                 <button
-                  className={`dropdown-item ${agrupacion === 'mes' ? 'active' : ''}`}
+                  className={`${styles['dropdown-item']} ${agrupacion === 'mes' ? styles.active : ''}`}
                   onClick={() => cambiarAgrupacion('mes')}
                 >
                   Mes

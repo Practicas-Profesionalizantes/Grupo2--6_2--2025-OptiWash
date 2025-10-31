@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import './DetalleInformeAsistencias.css';
+import styles from './DetalleInformeAsistencias.module.css';
 
 export default function DetalleInformeAsistencias() {
   const [searchParams] = useSearchParams();
@@ -110,53 +110,53 @@ export default function DetalleInformeAsistencias() {
   };
 
   return (
-    <div className="detalle-asistencias-container">
-      <div className="detalle-asistencias-wrapper">
-        <h1 className="detalle-asistencias-title">Informe de asistencia</h1>
-        <p className="detalle-asistencias-fecha">{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
+    <div className={styles['detalle-asistencias-container']}>
+      <div className={styles['detalle-asistencias-wrapper']}>
+        <h1 className={styles['detalle-asistencias-title']}>Informe de asistencia</h1>
+        <p className={styles['detalle-asistencias-fecha']}>{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
 
         {loading ? (
-          <div className="loading-container">
-            <div className="spinner"></div>
+          <div className={styles['loading-container']}>
+            <div className={styles.spinner}></div>
           </div>
         ) : (
           <>
             {/* Resumen superior */}
-            <div className="resumen-badges">
-              <div className="badge badge-presente">
-                <span className="badge-label">P.cant</span>
-                <span className="badge-value">
+            <div className={styles['resumen-badges']}>
+              <div className={`${styles.badge} ${styles['badge-presente']}`}>
+                <span className={styles['badge-label']}>P.cant</span>
+                <span className={styles['badge-value']}>
                   {estadisticas.reduce((sum, e) => sum + e.presentes, 0)}
                 </span>
               </div>
-              <div className="badge badge-ausente">
-                <span className="badge-label">A.cant</span>
-                <span className="badge-value">
+              <div className={`${styles.badge} ${styles['badge-ausente']}`}>
+                <span className={styles['badge-label']}>A.cant</span>
+                <span className={styles['badge-value']}>
                   {estadisticas.reduce((sum, e) => sum + e.ausentes, 0)}
                 </span>
               </div>
-              <div className="badge badge-tarde">
-                <span className="badge-label">T.cant</span>
-                <span className="badge-value">
+              <div className={`${styles.badge} ${styles['badge-tarde']}`}>
+                <span className={styles['badge-label']}>T.cant</span>
+                <span className={styles['badge-value']}>
                   {estadisticas.reduce((sum, e) => sum + e.tardes, 0)}
                 </span>
               </div>
             </div>
 
             {/* Lista de empleados */}
-            <div className="empleados-list">
+            <div className={styles['empleados-list']}>
               {estadisticas.length === 0 ? (
-                <div className="empty-state">
+                <div className={styles['empty-state']}>
                   No hay registros de asistencias en este período
                 </div>
               ) : (
                 estadisticas.map((empleado, index) => (
-                  <div key={index} className="empleado-card">
-                    <h3 className="empleado-nombre">{empleado.nombre}</h3>
-                    
-                    <div className="empleado-content">
+                  <div key={index} className={styles['empleado-card']}>
+                    <h3 className={styles['empleado-nombre']}>{empleado.nombre}</h3>
+
+                    <div className={styles['empleado-content']}>
                       {/* Gráfico */}
-                      <div className="grafico-container">
+                      <div className={styles['grafico-container']}>
                         <ResponsiveContainer width="100%" height={120}>
                           <PieChart>
                             <Pie
@@ -176,18 +176,18 @@ export default function DetalleInformeAsistencias() {
                       </div>
 
                       {/* Información */}
-                      <div className="empleado-info">
-                        <div className="info-row">
-                          <span className="info-label">P:{empleado.presentes}</span>
-                          <span className="info-value">Vale total: {calcularPagado(empleado)}</span>
+                      <div className={styles['empleado-info']}>
+                        <div className={styles['info-row']}>
+                          <span className={styles['info-label']}>P:{empleado.presentes}</span>
+                          <span className={styles['info-value']}>Vale total: {calcularPagado(empleado)}</span>
                         </div>
-                        <div className="info-row">
-                          <span className="info-label">A:{empleado.ausentes}</span>
-                          <span className="info-value">Pagado hoy: sí</span>
+                        <div className={styles['info-row']}>
+                          <span className={styles['info-label']}>A:{empleado.ausentes}</span>
+                          <span className={styles['info-value']}>Pagado hoy: sí</span>
                         </div>
-                        <div className="info-row">
-                          <span className="info-label">T:{empleado.tardes}</span>
-                          <button className="btn-ver-mas">Ver mas</button>
+                        <div className={styles['info-row']}>
+                          <span className={styles['info-label']}>T:{empleado.tardes}</span>
+                          <button className={styles['btn-ver-mas']}>Ver mas</button>
                         </div>
                       </div>
                     </div>
@@ -196,7 +196,7 @@ export default function DetalleInformeAsistencias() {
               )}
             </div>
 
-            <button className="btn-volver" onClick={handleVolver}>
+            <button className={styles['btn-volver']} onClick={handleVolver}>
               Volver
             </button>
           </>

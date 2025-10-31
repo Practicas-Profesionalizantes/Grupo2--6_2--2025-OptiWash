@@ -1,7 +1,7 @@
 // DetalleInformeInventario.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './DetalleInformeInventario.css';
+import styles from './DetalleInformeInventario.module.css';
 
 export default function DetalleInformeInventario() {
   const [searchParams] = useSearchParams();
@@ -77,21 +77,21 @@ export default function DetalleInformeInventario() {
   };
 
   return (
-    <div className="detalle-inventario-container">
-      <div className="detalle-inventario-wrapper">
-        <h1 className="detalle-inventario-title">Informe de inventario</h1>
-        <p className="detalle-inventario-fecha">{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
+    <div className={styles['detalle-inventario-container']}>
+      <div className={styles['detalle-inventario-wrapper']}>
+        <h1 className={styles['detalle-inventario-title']}>Informe de inventario</h1>
+        <p className={styles['detalle-inventario-fecha']}>{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
 
         {/* Tabs para cambiar entre Gastos e Inversión */}
-        <div className="tabs-container">
+        <div className={styles['tabs-container']}>
           <button
-            className={`tab ${tipoVista === 'gastos' ? 'active' : ''}`}
+            className={`${styles.tab} ${tipoVista === 'gastos' ? styles.active : ''}`}
             onClick={() => setTipoVista('gastos')}
           >
             Gastos
           </button>
           <button
-            className={`tab ${tipoVista === 'inversion' ? 'active' : ''}`}
+            className={`${styles.tab} ${tipoVista === 'inversion' ? styles.active : ''}`}
             onClick={() => setTipoVista('inversion')}
           >
             Inversión
@@ -99,13 +99,13 @@ export default function DetalleInformeInventario() {
         </div>
 
         {loading ? (
-          <div className="loading-container">
-            <div className="spinner"></div>
+          <div className={styles['loading-container']}>
+            <div className={styles.spinner}></div>
           </div>
         ) : (
           <>
-            <div className="tabla-inventario-container">
-              <table className="tabla-inventario">
+            <div className={styles['tabla-inventario-container']}>
+              <table className={styles['tabla-inventario']}>
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -117,7 +117,7 @@ export default function DetalleInformeInventario() {
                 <tbody>
                   {productos.length === 0 ? (
                     <tr>
-                      <td colSpan="4" className="empty-cell">
+                      <td colSpan="4" className={styles['empty-cell']}>
                         No hay {tipoVista === 'gastos' ? 'gastos' : 'inversiones'} en este período
                       </td>
                     </tr>
@@ -135,11 +135,11 @@ export default function DetalleInformeInventario() {
               </table>
             </div>
 
-            <div className="total-final">
+            <div className={styles['total-final']}>
               <h2>Total {tipoVista === 'gastos' ? 'Gastado' : 'Invertido'}: ${totalFinal.toFixed(2)}</h2>
             </div>
 
-            <button className="btn-volver" onClick={handleVolver}>
+            <button className={styles['btn-volver']} onClick={handleVolver}>
               Volver
             </button>
           </>

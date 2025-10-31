@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./VistaDetallada.css";
+import styles from "./vistaDetallada.module.css";
 import volver from "../../assets/asistencia/volver.png";
 
 function VistaDetallada({ fecha, onClose, onGuardar }) {
@@ -135,16 +135,16 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
   };
 
   if (loading) return (
-    <div className="vista-detallada-modal">
-      <div className="vista-detallada-contenido">
+    <div className={styles['vista-detallada-modal']}>
+      <div className={styles['vista-detallada-contenido']}>
         <p>Cargando empleados...</p>
       </div>
     </div>
   );
 
   if (error) return (
-    <div className="vista-detallada-modal">
-      <div className="vista-detallada-contenido">
+    <div className={styles['vista-detallada-modal']}>
+      <div className={styles['vista-detallada-contenido']}>
         <p>Error: {error.message}</p>
         <button onClick={onClose}>Cerrar</button>
       </div>
@@ -152,26 +152,26 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
   );
 
   return (
-    <div className="vista-detallada-modal" onClick={onClose}>
-      <div className="vista-detallada-contenido" onClick={(e) => e.stopPropagation()}>
-        <div className="header-row">
-          <div 
-            className="btn-volver" 
+    <div className={styles['vista-detallada-modal']} onClick={onClose}>
+      <div className={styles['vista-detallada-contenido']} onClick={(e) => e.stopPropagation()}>
+        <div className={styles['header-row']}>
+          <div
+            className={styles['btn-volver']}
             onClick={onClose}
             style={{ backgroundImage: `url(${volver})` }}
           />
           <h2>
-            {obtenerNombreDia(fecha)} <span className="fecha-inline">{fecha}</span>
+            {obtenerNombreDia(fecha)} <span className={styles['fecha-inline']}>{fecha}</span>
           </h2>
-          <button 
-            className="btn-confirmar-header" 
+          <button
+            className={styles['btn-confirmar-header']}
             onClick={handleSubmit}
             type="button"
           >
             Confirmar
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <table>
             <thead>
@@ -185,7 +185,7 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
             <tbody>
               {empleados.map((empleado) => {
                 const datos = datosAsistencia[empleado.ID] || {};
-                
+
                 return (
                   <tr key={empleado.ID}>
                     <td>{empleado.Nombre}</td>
@@ -224,7 +224,7 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
           </table>
         </form>
 
-        {mensaje && <div className="mensaje-flotante">{mensaje}</div>}
+        {mensaje && <div className={styles['mensaje-flotante']}>{mensaje}</div>}
       </div>
     </div>
   );

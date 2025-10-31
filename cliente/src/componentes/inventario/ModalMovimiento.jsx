@@ -1,7 +1,7 @@
 // ModalMovimiento.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ModalMovimiento.css';
+import styles from './ModalMovimiento.module.css';
 
 function ModalMovimiento({ tipo, productos, onClose, onExito }) {
   const [movimientos, setMovimientos] = useState({});
@@ -107,30 +107,30 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-contenido" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
+    <div className={styles['modal-overlay']} onClick={onClose}>
+      <div className={styles['modal-contenido']} onClick={(e) => e.stopPropagation()}>
+        <div className={styles['modal-header']}>
           <h2>
             {tipo === 'agregar' ? 'Agregar Productos' : 'Registrar Uso'}
           </h2>
-          <button className="btn-cerrar" onClick={onClose}>×</button>
+          <button className={styles['btn-cerrar']} onClick={onClose}>×</button>
         </div>
 
         {mensaje && (
-          <div className={`mensaje ${mensaje.includes('✓') ? 'exito' : mensaje.includes('⚠') ? 'warning' : 'error'}`}>
+          <div className={`${styles.mensaje} ${mensaje.includes('✓') ? styles.exito : mensaje.includes('⚠') ? styles.warning : styles.error}`}>
             {mensaje}
           </div>
         )}
 
-        <div className="acciones-config">
-          <button className="btn-cargar-config" onClick={cargarUltimaConfiguracion}>
+        <div className={styles['acciones-config']}>
+          <button className={styles['btn-cargar-config']} onClick={cargarUltimaConfiguracion}>
             Cargar última configuración
           </button>
-          <span className="texto-auto-guardado">Se guarda automáticamente</span>
+          <span className={styles['texto-auto-guardado']}>Se guarda automáticamente</span>
         </div>
 
-        <div className="modal-body">
-          <table className="tabla-modal">
+        <div className={styles['modal-body']}>
+          <table className={styles['tabla-modal']}>
             <thead>
               <tr>
                 <th>Producto</th>
@@ -142,8 +142,8 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
             <tbody>
               {productos.map(p => (
                 <tr key={p.ID}>
-                  <td className="td-producto">{p.Nombre}</td>
-                  <td className="td-stock">{p.Bidon} Bidones</td>
+                  <td className={styles['td-producto']}>{p.Nombre}</td>
+                  <td className={styles['td-stock']}>{p.Bidon} Bidones</td>
                   <td>
                     <input
                       type="number"
@@ -153,7 +153,7 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
                       max={tipo === 'utilizar' ? p.Bidon : undefined}
                       value={movimientos[p.ID] || ''}
                       onChange={e => handleCantidadChange(p.ID, e.target.value)}
-                      className="input-cantidad"
+                      className={styles['input-cantidad']}
                     />
                   </td>
                   {tipo === 'agregar' && (
@@ -165,7 +165,7 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
                         step="0.01"
                         value={precios[p.ID] || ''}
                         onChange={e => handlePrecioChange(p.ID, e.target.value)}
-                        className="input-precio"
+                        className={styles['input-precio']}
                       />
                     </td>
                   )}
@@ -175,12 +175,12 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
           </table>
         </div>
 
-        <div className="modal-footer">
-          <button className="btn-cancelar" onClick={onClose} disabled={loading}>
+        <div className={styles['modal-footer']}>
+          <button className={styles['btn-cancelar']} onClick={onClose} disabled={loading}>
             Cancelar
           </button>
-          <button 
-            className="btn-confirmar" 
+          <button
+            className={styles['btn-confirmar']}
             onClick={confirmarMovimientos}
             disabled={loading}
           >

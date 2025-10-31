@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./registro_autos.css";
+import styles from "./registro_autos.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 function RegistroAuto() {
@@ -44,47 +44,47 @@ function RegistroAuto() {
   };
 
   return (
-    <div className="registro-container">
+    <div className={styles['registro-container']}>
       {/* 🔔 Notificación flotante */}
-      {notificacion && <div className="notificacion">{notificacion}</div>}
+      {notificacion && <div className={styles.notificacion}>{notificacion}</div>}
 
-      <div className="acciones">
+      <div className={styles.acciones}>
         <Link to="/editar" style={{ textDecoration: "none" }}>
-          <button className="btn editar">Editar</button>
+          <button className={`${styles.btn} ${styles.editar}`}>Editar</button>
         </Link>
         <Link to="/editar" style={{ textDecoration: "none" }}>
-          <button className="btn anadir">Añadir</button>
+          <button className={`${styles.btn} ${styles.anadir}`}>Añadir</button>
         </Link>
       </div>
 
-      <div className="lista-registros">
+      <div className={styles['lista-registros']}>
         {registros.map((r, index) => (
-          <div className="tarjeta-registro" key={r.ID}>
-            <div className="columna-id">{registros.length - index}</div>
+          <div className={styles['tarjeta-registro']} key={r.ID}>
+            <div className={styles['columna-id']}>{registros.length - index}</div>
 
-            <div className="contenido">
-              <div className="encabezado">
-                <span className="modelo">Modelo: {r.Modelo}</span>
-                <span className="precio">Precio: {r.Precio.toLocaleString()}</span>
-                <button className="toggle" onClick={() => toggleExpandir(r.ID)}>
+            <div className={styles.contenido}>
+              <div className={styles.encabezado}>
+                <span className={styles.modelo}>Modelo: {r.Modelo}</span>
+                <span className={styles.precio}>Precio: {r.Precio.toLocaleString()}</span>
+                <button className={styles.toggle} onClick={() => toggleExpandir(r.ID)}>
                   {expandido[r.ID] ? "−" : "+"}
                 </button>
               </div>
 
               {expandido[r.ID] && (
-                <div className="detalles">
-                  <div className="fila-datos">
-                    <span className="nombre">
+                <div className={styles.detalles}>
+                  <div className={styles['fila-datos']}>
+                    <span className={styles.nombre}>
                       <strong>{r.Cliente || "Sin Nombre"}</strong>
                     </span>
-                    <span className="separador">|</span>
-                    <span className="patente">{r.Patente || "Sin Patente"}</span>
-                    <span className="separador">|</span>
-                    <span className="telefono">
+                    <span className={styles.separador}>|</span>
+                    <span className={styles.patente}>{r.Patente || "Sin Patente"}</span>
+                    <span className={styles.separador}>|</span>
+                    <span className={styles.telefono}>
                       {r.Telefono ? `+${r.Telefono}` : "Sin N° celular"}
                     </span>
                   </div>
-                  <p className="nota">Nota: {r.Nota || "----"}</p>
+                  <p className={styles.nota}>Nota: {r.Nota || "----"}</p>
                 </div>
               )}
             </div>

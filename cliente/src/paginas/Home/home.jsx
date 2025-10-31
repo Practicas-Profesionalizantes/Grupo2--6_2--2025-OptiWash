@@ -1,4 +1,4 @@
-import "../Home/Home.css"
+import styles from "./Home.module.css"
 import inventario from "../../assets/home/inventario.png";
 import asistencias from "../../assets/home/asistencias.png";
 import autos_lavados from "../../assets/home/autos_lavados.png";
@@ -6,23 +6,23 @@ import { Link } from "react-router-dom";
 
 function Home (){
     return(<>
-        <main>
-            
-            <div className="tarjetas-h">
+        <main className={styles.main}>
+
+            <div className={styles['tarjetas-h']}>
                 <Link to="/inventario" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta-h" id="t1">
+                    <div className={styles['tarjeta-h']} id="t1">
                         <h2>INVENTARIO</h2>
                         <img src={inventario} alt=""/>
                     </div>
                 </Link>
                 <Link to="/asistencia" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta-h" id="t2">
+                    <div className={styles['tarjeta-h']} id="t2">
                         <h2>ASISTENCIAS</h2>
                         <img src={asistencias} alt=""/>
                     </div>
                 </Link>
                 <Link to="/registro_autos" style={{textDecoration:"none", color:"black"}}>
-                    <div className="tarjeta-h" id="t3">
+                    <div className={styles['tarjeta-h']} id="t3">
                         <h2>REGISTROS DE AUTOS</h2>
                         <img src={autos_lavados} alt=""/>
                     </div>

@@ -1,7 +1,7 @@
 // DetalleInformeAutos.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './DetalleInformeAutos.css';
+import styles from './DetalleInformeAutos.module.css';
 
 export default function DetalleInformeAutos() {
   const [searchParams] = useSearchParams();
@@ -72,19 +72,19 @@ export default function DetalleInformeAutos() {
   };
 
   return (
-    <div className="detalle-container">
-      <div className="detalle-wrapper">
-        <h1 className="detalle-title">Informe de autos</h1>
-        <p className="detalle-fecha">{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
+    <div className={styles['detalle-container']}>
+      <div className={styles['detalle-wrapper']}>
+        <h1 className={styles['detalle-title']}>Informe de autos</h1>
+        <p className={styles['detalle-fecha']}>{fechaInicio ? formatearFecha(fechaInicio) : ''}</p>
 
         {loading ? (
-          <div className="loading-container">
-            <div className="spinner"></div>
+          <div className={styles['loading-container']}>
+            <div className={styles.spinner}></div>
           </div>
         ) : (
           <>
-            <div className="tabla-container">
-              <table className="tabla-lavados">
+            <div className={styles['tabla-container']}>
+              <table className={styles['tabla-lavados']}>
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -96,7 +96,7 @@ export default function DetalleInformeAutos() {
                 <tbody>
                   {lavados.length === 0 ? (
                     <tr>
-                      <td colSpan="4" className="empty-cell">
+                      <td colSpan="4" className={styles['empty-cell']}>
                         No hay registros de lavados en este período
                       </td>
                     </tr>
@@ -114,11 +114,11 @@ export default function DetalleInformeAutos() {
               </table>
             </div>
 
-            <div className="ganancia-total">
+            <div className={styles['ganancia-total']}>
               <h2>Ganancia Total: ${gananciaTotal.toFixed(2)}</h2>
             </div>
 
-            <button className="btn-volver" onClick={handleVolver}>
+            <button className={styles['btn-volver']} onClick={handleVolver}>
               Volver
             </button>
           </>
