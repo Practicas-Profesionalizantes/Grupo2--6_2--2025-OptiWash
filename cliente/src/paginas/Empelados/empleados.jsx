@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./empleado.css";
+import styles from "./empleado.module.css";
 
 function Empleados() {
   const [empleados, setEmpleados] = useState([]);
@@ -29,23 +29,23 @@ function Empleados() {
   };
 
   return (
-    <div className="empleado-registro">
-      <h2 className="titulo">REGISTRO DE EMPLEADOS</h2>
+    <div className={styles['empleado-registro']}>
+      <h2 className={styles.titulo}>REGISTRO DE EMPLEADOS</h2>
 
-      <div className="botones-acciones">
-        <button className="btn verde">Añadir</button>
-        <button className="btn gris">Editar</button>
-        <button className="btn rojo">Eliminar</button>
+      <div className={styles['botones-acciones']}>
+        <button className={`${styles.btn} ${styles.verde}`}>Añadir</button>
+        <button className={`${styles.btn} ${styles.gris}`}>Editar</button>
+        <button className={`${styles.btn} ${styles.rojo}`}>Eliminar</button>
       </div>
 
-      <div className="lista-empleados">
+      <div className={styles['lista-empleados']}>
         {empleados.map((e) => (
-          <div key={e.ID} className="tarjeta-empleado">
-            <p className="tit"><strong>Nombre:</strong> {e.Nombre}</p>
-            <p className="tit2"><strong>Cargo:</strong> {e.Cargo}</p>
-            <p className="tit2"><strong>Celular:</strong> {e.celular}</p>
+          <div key={e.ID} className={styles['tarjeta-empleado']}>
+            <p className={styles.tit}><strong>Nombre:</strong> {e.Nombre}</p>
+            <p className={styles.tit2}><strong>Cargo:</strong> {e.Cargo}</p>
+            <p className={styles.tit2}><strong>Celular:</strong> {e.celular}</p>
             <button
-              className="btn-eliminar"
+              className={styles['btn-eliminar']}
               onClick={() => eliminarEmpleado(e.ID)}
             >
               ×

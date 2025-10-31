@@ -1,0 +1,275 @@
+/* ===== Fuentes ===== */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---------- NAV PRINCIPAL ---------- */
+.nav {
+  background-color: #1C3144;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav img {
+  height: 55px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* ---------- LINKS PRINCIPALES ---------- */
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-family: "Crimson Text", serif;
+  font-style: normal;
+  transition: 0.1s ease-out;
+  font-size: 28px;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  margin-top: 0.5%;
+  text-align: center;
+  white-space: nowrap;
+}
+.navLink h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.navLink:not(.activeLink) h2:hover {
+  transform: scale(1.1);
+}
+
+.activeLink {
+  background-color: #ECEBF3;
+  border-radius: 40px;
+}
+
+.activeLink h2 {
+  color: black;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  
+}
+
+.activeLink h2:hover {
+  transform: none;
+  
+}
+
+/* ---------- BOTONES DE TEXTO ---------- */
+.botones {
+  background-color: transparent;
+  border: none;
+  color: #0f1212;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0.1rem 2.5rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  
+}
+
+.botones:hover {
+  color: #1C3144;
+  transform: scale(1.05);
+}
+
+/* ---------- SECCIONES DEL MENÚ ---------- */
+.men {
+  font-size: 25px;
+  width: auto;
+  margin-top: 25px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  text-shadow: 0px 4px 4px rgba(154, 153, 153, 0.724);
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+}
+
+.men2 {
+  color: black;
+  text-align: center;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+}
+
+.linea, .linea1 {
+  height: 1.5px;
+  background-color: rgba(60, 58, 58, 0.304);
+  margin: 10px 0;
+  width: 80%;
+}
+
+/* ---------- MENÚ LATERAL IZQUIERDO ---------- */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: -260px; /* oculto por defecto */
+  height: 100vh;
+  width: 240px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 0.6rem;
+  transition: left 0.3s ease-in-out;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1002; /* más alto que el overlay */
+}
+
+.menu-lateral.activo {
+  left: 0; /* se muestra */
+}
+
+/* ---------- FONDO OSCURECIDO (overlay) ---------- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* debajo del menú */
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- HAMBURGUESA ---------- */
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1003;
+}
+
+.barra {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Animación al activar */
+.barra.activa {
+  background-color: black;
+}
+
+.barra.activa:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.barra.activa:nth-child(2) {
+  opacity: 0;
+}
+.barra.activa:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .navLink {
+    font-size: 24px;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .nav img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburguesa {
+    display: flex; /* visible en móvil */
+  }
+
+  .menu-lateral {
+    width: 250px;
+  }
+
+  .nav {
+    flex-direction: row;
+    padding: 0.8rem 1rem;
+  }
+
+  .navLink {
+    font-size: 20px;
+    padding: 0.4rem 0.6rem;
+    
+  }
+
+  .botones {
+    font-size: 18px;
+  }
+
+  .deco {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-lateral {
+    position: static;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .hamburguesa {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 0.8rem;
+  }
+
+  .nav img {
+    height: 45px;
+  }
+
+  .navLink {
+    font-size: 18px;
+    padding: 0.3rem 0.6rem;
+  }
+}

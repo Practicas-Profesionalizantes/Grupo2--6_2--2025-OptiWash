@@ -1,7 +1,6 @@
 // InformeAsistencias.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../InformeMenu.css';
 
 export default function InformeAsistencias({ agrupacion }) {
   const [informes, setInformes] = useState([]);

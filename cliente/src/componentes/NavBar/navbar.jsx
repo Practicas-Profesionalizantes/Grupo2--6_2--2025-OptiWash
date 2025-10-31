@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import "./nav.css";
+import styles from "./nav.module.css";
 import logo from "../../assets/logo.png";
 
 function Nav() {
@@ -9,91 +9,91 @@ function Nav() {
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
   return (
-    
-    <nav className="nav">
+
+    <nav className={styles.nav}>
       {/* Icono hamburguesa a la izquierda */}
-      
-      <button className="hamburguesa" onClick={toggleMenu}>
-        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
-        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
-        <span className={`barra ${menuAbierto ? "activa" : ""}`}></span>
+
+      <button className={styles.hamburguesa} onClick={toggleMenu}>
+        <span className={`${styles.barra} ${menuAbierto ? styles.activa : ""}`}></span>
+        <span className={`${styles.barra} ${menuAbierto ? styles.activa : ""}`}></span>
+        <span className={`${styles.barra} ${menuAbierto ? styles.activa : ""}`}></span>
       </button>
 
       {/* Logo a la derecha */}
-      <img src={logo} alt="logo" className="logo" />
+      <img src={logo} alt="logo" className={styles.logo} />
 
       {/* Menú lateral izquierdo */}
-      <div className={`menu-lateral ${menuAbierto ? "activo" : ""}`}>
-        <div className="men">
-          <h2 className=" men2">Menu</h2>
+      <div className={`${styles['menu-lateral']} ${menuAbierto ? styles.activo : ""}`}>
+        <div className={styles.men}>
+          <h2 className={styles.men2}>Menu</h2>
       </div>
-        <span className="linea"></span>
+        <span className={styles.linea}></span>
         <NavLink
           to="/inventario"
           className={({ isActive }) =>
             isActive
-              ? "navLink activeLink" : "navLink"
+              ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones" >Inventario</h2>
+          <h2 className={styles.botones} >Inventario</h2>
         </NavLink>
-        <span className="linea1"></span>
+        <span className={styles.linea1}></span>
 
         <NavLink
           to="/registro_autos"
           className={({ isActive }) =>
             isActive
-              ? "navLink activeLink" : "navLink"
+              ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones">Registro</h2>
+          <h2 className={styles.botones}>Registro</h2>
 
 
         </NavLink>
-        <span className="linea1"></span>
+        <span className={styles.linea1}></span>
 
         <NavLink
           to="/asistencia"
           className={({ isActive }) =>
             isActive
-              ? "navLink activeLink" : "navLink"
+              ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones">Asistencia</h2>
+          <h2 className={styles.botones}>Asistencia</h2>
 
         </NavLink>
-        <span className="linea1"></span>
+        <span className={styles.linea1}></span>
         <NavLink
           to="/Empleados"
           className={({ isActive }) =>
             isActive
-              ? "navLink activeLink" : "navLink"
+              ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones">empleados</h2>
+          <h2 className={styles.botones}>empleados</h2>
 
         </NavLink>
-        <span className="linea1"></span>
+        <span className={styles.linea1}></span>
         <NavLink
           to="/informes"
           className={({ isActive }) =>
             isActive
-              ? "navLink activeLink" : "navLink"
+              ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
           }
           onClick={() => setMenuAbierto(false)}
         >
-          <h2 className="botones">Informes</h2>
+          <h2 className={styles.botones}>Informes</h2>
 
         </NavLink>
-        <span className="linea1"></span>
+        <span className={styles.linea1}></span>
       </div>
 
       {/* Fondo semitransparente cuando el menú está activo */}
-      {menuAbierto && <div className="overlay" onClick={toggleMenu}></div>}
+      {menuAbierto && <div className={styles.overlay} onClick={toggleMenu}></div>}
     </nav>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../Asistencias/asistencia.css";
+import styles from "./asistencia.module.css";
 
 import imgPresente from "../../assets/asistencia/presente.png";
 import imgAusente from "../../assets/asistencia/ausente.png";
@@ -104,18 +104,18 @@ const Asistencia = () => {
       else if (info.estado === "Tarde") imgAsistencia = imgTarde;
       if (imgAsistencia)
         elementos.push(
-          <img key="asistencia" src={imgAsistencia} alt={info.estado} className="icono-asistencia" />
+          <img key="asistencia" src={imgAsistencia} alt={info.estado} className={styles['icono-asistencia']} />
         );
     }
-    
+
 
     if (info.vale && info.vale > 0)
-      elementos.push(<img key="vale" src={imgVale} alt="Vale" className="icono-vale" />);
-    
+      elementos.push(<img key="vale" src={imgVale} alt="Vale" className={styles['icono-vale']} />);
+
     if (info.pagado === true)
-      elementos.push(<img key="pagado" src={imgPagado} alt="Pagado" className="icono-pagado" />);
-    
-    return elementos.length > 0 ? <div className="contenedor-iconos">{elementos}</div> : <span>-</span>;
+      elementos.push(<img key="pagado" src={imgPagado} alt="Pagado" className={styles['icono-pagado']} />);
+
+    return elementos.length > 0 ? <div className={styles['contenedor-iconos']}>{elementos}</div> : <span>-</span>;
   };
 
   const manejarClick = (indiceDia) => {
@@ -143,8 +143,8 @@ const Asistencia = () => {
   };
 
   return (
-    <div className="contenedor-asistencia">
-      <div className="navegacion">
+    <div className={styles['contenedor-asistencia']}>
+      <div className={styles.navegacion}>
         <button onClick={() => cambiarSemana(-1)} disabled={cargando}>←</button>
         <span>{rango}</span>
         <button onClick={() => cambiarSemana(1)} disabled={cargando}>→</button>
@@ -159,16 +159,16 @@ const Asistencia = () => {
       ) : asistencias.length === 0 ? (
         <p style={{ textAlign: "center" }}>No hay registros para esta semana.</p>
       ) : (
-        <div className="tabla-scroll sin-scroll">
-          <table className="tabla-asistencia">
+        <div className={`${styles['tabla-scroll']} ${styles['sin-scroll']}`}>
+          <table className={styles['tabla-asistencia']}>
             <thead>
               <tr>
-                <th className="columna-fija">Nombre</th>
+                <th className={styles['columna-fija']}>Nombre</th>
                 {diasSemana.map((dia, indice) => (
                   <th
                     key={dia}
                     onClick={() => manejarClick(indice)}
-                    className={columnaSeleccionada === indice ? "columna-activa" : ""}
+                    className={columnaSeleccionada === indice ? styles['columna-activa'] : ""}
                   >
                     {dia}
                   </th>
@@ -178,7 +178,7 @@ const Asistencia = () => {
             <tbody>
               {Object.entries(empleadosAgrupados).map(([nombre, diasObj]) => (
                 <tr key={nombre}>
-                  <td className="nombre-empleado columna-fija">{nombre}</td>
+                  <td className={`${styles['nombre-empleado']} ${styles['columna-fija']}`}>{nombre}</td>
                   {diasSemana.map((_, indice) => {
                     const diaFecha = new Date(lunes);
                     diaFecha.setDate(lunes.getDate() + indice);
@@ -187,7 +187,7 @@ const Asistencia = () => {
                     return (
                       <td
                         key={indice}
-                        className={`celda-dia ${columnaSeleccionada === indice ? "columna-activa" : ""}`}
+                        className={`${styles['celda-dia']} ${columnaSeleccionada === indice ? styles['columna-activa'] : ""}`}
                         onClick={() => manejarClick(indice)}
                       >
                         {renderizarIconos(info)}

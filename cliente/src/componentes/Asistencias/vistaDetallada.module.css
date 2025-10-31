@@ -1,0 +1,430 @@
+/* VistaDetallada.css */
+
+/* Modal Overlay - Solo para VistaDetallada */
+.vista-detallada-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.vista-detallada-contenido {
+  background: #1C3144;
+  border-radius: 20px;
+  padding: 30px 0 0 0;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Header con día y botón confirmar en la misma fila */
+.vista-detallada-contenido .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+  padding: 0 30px;
+}
+
+.vista-detallada-contenido .btn-volver {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: block;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.vista-detallada-contenido .btn-volver:hover {
+  transform: translateX(-5px);
+}
+
+.vista-detallada-contenido h2 {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.vista-detallada-contenido .fecha-inline {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-left: 5px;
+}
+
+/* Botón Confirmar - arriba a la derecha */
+.vista-detallada-contenido .btn-confirmar-header {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vista-detallada-contenido .btn-confirmar-header:hover {
+  background-color: white;
+  color: #1C3144;
+}
+
+/* Tabla - SOLO dentro de VistaDetallada */
+.vista-detallada-contenido table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  background-color: #1C3144;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.vista-detallada-contenido thead tr {
+  background-color: #2A3F51;
+}
+
+.vista-detallada-contenido thead th {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px;
+  text-align: left;
+  border-right: 2px solid #1C3144;
+}
+
+/* Redondeado en las esquinas superiores del thead */
+.vista-detallada-contenido thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.vista-detallada-contenido thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Ajustar anchos de columnas */
+.vista-detallada-contenido thead th:nth-child(1) {
+  width: 30%;
+  padding-left: 20px;
+}
+
+.vista-detallada-contenido thead th:nth-child(2) {
+  width: 25%;
+}
+
+.vista-detallada-contenido thead th:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+.vista-detallada-contenido thead th:nth-child(4) {
+  width: 30%;
+  border-right: none;
+}
+
+.vista-detallada-contenido tbody tr {
+  background-color: #D9D9D9;
+  border-bottom: 2px solid #1C3144;
+  transition: background-color 0.2s;
+}
+
+.vista-detallada-contenido tbody tr:last-child {
+  border-bottom: none;
+}
+
+.vista-detallada-contenido tbody tr:hover {
+  background-color: #C9C9C9;
+}
+
+.vista-detallada-contenido tbody td {
+  padding: 12px 15px;
+  color: #1C3144;
+  font-size: 15px;
+  border-right: 2px solid #1C3144;
+}
+
+.vista-detallada-contenido tbody td:last-child {
+  border-right: none;
+}
+
+.vista-detallada-contenido tbody td:nth-child(1) {
+  width: 30%;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+.vista-detallada-contenido tbody td:nth-child(2) {
+  width: 25%;
+}
+
+/* Centrar checkbox de P.D. */
+.vista-detallada-contenido tbody td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+
+.vista-detallada-contenido tbody td:nth-child(4) {
+  width: 30%;
+}
+
+/* Inputs y Selects - SOLO en VistaDetallada */
+.vista-detallada-contenido select,
+.vista-detallada-contenido input[type="number"] {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #1C3144;
+  border-radius: 20px;
+  padding: 10px 15px;
+  width: 100%;
+  max-width: 150px;
+  font-size: 14px;
+  color: #1C3144;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.vista-detallada-contenido select:focus,
+.vista-detallada-contenido input[type="number"]:focus {
+  background-color: white;
+  border-color: #3498db;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3);
+  transform: scale(1.05);
+}
+
+.vista-detallada-contenido select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231C3144' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 35px;
+}
+
+.vista-detallada-contenido input[type="number"] {
+  text-align: center;
+}
+
+/* Checkbox - SOLO en VistaDetallada */
+.vista-detallada-contenido input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #1C3144;
+}
+
+/* Mensaje flotante - fuera del modal */
+.mensaje-flotante {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  text-align: center;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 500;
+  background-color: rgba(46, 204, 113, 0.95);
+  color: white;
+  border: 1px solid #27ae60;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Loading y Error estados */
+.vista-detallada-contenido p {
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 20px 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vista-detallada-contenido {
+    width: 95%;
+    padding: 20px 0 0 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+  }
+
+  .vista-detallada-contenido .header-row {
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 0 15px;
+  }
+
+  .vista-detallada-contenido .btn-volver {
+    width: 24px;
+    height: 24px;
+  }
+
+  .vista-detallada-contenido h2 {
+    font-size: 20px;
+  }
+
+  .vista-detallada-contenido .fecha-inline {
+    font-size: 14px;
+  }
+
+  .vista-detallada-contenido .btn-confirmar-header {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .mensaje-flotante {
+    top: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+    max-width: 90%;
+  }
+
+  /* Tabla responsive con scroll horizontal */
+  .vista-detallada-contenido table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .vista-detallada-contenido thead, 
+  .vista-detallada-contenido tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .vista-detallada-contenido thead th {
+    padding: 12px 10px;
+    font-size: 14px;
+    min-width: 90px;
+  }
+
+  .vista-detallada-contenido thead th:first-child {
+    min-width: 140px;
+    padding-left: 15px;
+  }
+
+  .vista-detallada-contenido tbody td {
+    padding: 10px 8px;
+    font-size: 14px;
+    min-width: 90px;
+  }
+
+  .vista-detallada-contenido tbody td:first-child {
+    min-width: 140px;
+    padding-left: 15px;
+  }
+
+  .vista-detallada-contenido select,
+  .vista-detallada-contenido input[type="number"] {
+    max-width: 100%;
+    width: 80px;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 15px;
+  }
+
+  .vista-detallada-contenido select {
+    padding-right: 28px;
+    background-position: right 8px center;
+  }
+
+  .vista-detallada-contenido input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .vista-detallada-contenido {
+    width: 98%;
+    padding: 15px 0 0 0;
+  }
+
+  .vista-detallada-contenido .header-row {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .vista-detallada-contenido .btn-volver {
+    width: 20px;
+    height: 20px;
+  }
+
+  .vista-detallada-contenido h2 {
+    font-size: 16px;
+  }
+
+  .vista-detallada-contenido .fecha-inline {
+    font-size: 12px;
+  }
+
+  .vista-detallada-contenido .btn-confirmar-header {
+    font-size: 12px;
+    padding: 6px 15px;
+  }
+
+  .vista-detallada-contenido thead th {
+    padding: 10px 8px;
+    font-size: 13px;
+    min-width: 80px;
+  }
+
+  .vista-detallada-contenido thead th:first-child {
+    min-width: 120px;
+    padding-left: 10px;
+  }
+
+  .vista-detallada-contenido tbody td {
+    padding: 8px 6px;
+    font-size: 13px;
+    min-width: 80px;
+  }
+
+  .vista-detallada-contenido tbody td:first-child {
+    min-width: 120px;
+    padding-left: 10px;
+  }
+
+  .vista-detallada-contenido select,
+  .vista-detallada-contenido input[type="number"] {
+    width: 70px;
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .vista-detallada-contenido input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}
