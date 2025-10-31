@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./registro_autos.module.css";
-import { Link, useLocation } from "react-router-dom";
+import AñadirAutoRegistro from "../../componentes/Registro_Autos/añadir_autoRegistro.jsx";
+import EditarAutoRegistro from "../../componentes/Registro_Autos/editar_autoRegistro.jsx";
 
 function RegistroAuto() {
   const [registros, setRegistros] = useState([]);
   const [expandido, setExpandido] = useState({});
-  const [notificacion, setNotificacion] = useState(""); // 🔔 estado para el mensaje
-  const location = useLocation();
+  const [seleccionado, setSeleccionado] = useState(null);
+  const [mostrarAñadir, setMostrarAñadir] = useState(false);
+  const [mostrarEditar, setMostrarEditar] = useState(false);
+  const [registroSeleccionado, setRegistroSeleccionado] = useState(null);
 
   const cargarRegistros = async () => {
     try {
@@ -22,50 +25,65 @@ function RegistroAuto() {
     cargarRegistros();
   }, []);
 
-  // 👇 Detecta si venís desde editar.jsx con un nuevo registro
-  useEffect(() => {
-    if (location.state?.nuevo) {
-      cargarRegistros(); // recarga la lista
-      setNotificacion(location.state.mensaje || "✅ Registro agregado correctamente");
-      window.history.replaceState({}, document.title); // limpia el estado
-
-      // Oculta el mensaje después de 3s
-      setTimeout(() => setNotificacion(""), 3000);
-    }
-    if (location.state?.error) {
-      setNotificacion(location.state.error);
-      window.history.replaceState({}, document.title);
-      setTimeout(() => setNotificacion(""), 3000);
-    }
-  }, [location.state]);
-
   const toggleExpandir = (id) => {
     setExpandido((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  return (
-    <div className={styles['registro-container']}>
-      {/* 🔔 Notificación flotante */}
-      {notificacion && <div className={styles.notificacion}>{notificacion}</div>}
+  const abrirEdicion = () => {
+    if (!seleccionado) return;
+    const registro = registros.find((r) => r.ID === seleccionado);
+    setRegistroSeleccionado(registro);
+    setMostrarEditar(true);
+  };
 
+  const cerrarEdicion = (recargar = false) => {
+    setMostrarEditar(false);
+    setRegistroSeleccionado(null);
+    if (recargar) cargarRegistros();
+  };
+
+  const cerrarAñadir = (recargar = false) => {
+    setMostrarAñadir(false);
+    if (recargar) cargarRegistros();
+  };
+
+  return (
+    <div className={styles["registro-container"]}>
       <div className={styles.acciones}>
-        <Link to="/editar" style={{ textDecoration: "none" }}>
-          <button className={`${styles.btn} ${styles.editar}`}>Editar</button>
-        </Link>
-        <Link to="/editar" style={{ textDecoration: "none" }}>
-          <button className={`${styles.btn} ${styles.anadir}`}>Añadir</button>
-        </Link>
+        <button
+          className={`${styles.btn} ${styles.editar}`}
+          disabled={!seleccionado}
+          onClick={abrirEdicion}
+        >
+          Editar
+        </button>
+
+        <button
+          className={`${styles.btn} ${styles.anadir}`}
+          onClick={() => setMostrarAñadir(true)}
+        >
+          Añadir
+        </button>
       </div>
 
-      <div className={styles['lista-registros']}>
+      <div className={styles["lista-registros"]}>
         {registros.map((r, index) => (
-          <div className={styles['tarjeta-registro']} key={r.ID}>
-            <div className={styles['columna-id']}>{registros.length - index}</div>
+          <div className={styles["tarjeta-registro"]} key={r.ID}>
+            <div className={styles["columna-id"]}>{registros.length - index}</div>
 
             <div className={styles.contenido}>
               <div className={styles.encabezado}>
                 <span className={styles.modelo}>Modelo: {r.Modelo}</span>
                 <span className={styles.precio}>Precio: {r.Precio.toLocaleString()}</span>
+
+                <input
+                  type="radio"
+                  name="registroSeleccionado"
+                  checked={seleccionado === r.ID}
+                  onChange={() => setSeleccionado(r.ID)}
+                  style={{ margin: "0 10px" }}
+                />
+
                 <button className={styles.toggle} onClick={() => toggleExpandir(r.ID)}>
                   {expandido[r.ID] ? "−" : "+"}
                 </button>
@@ -73,7 +91,7 @@ function RegistroAuto() {
 
               {expandido[r.ID] && (
                 <div className={styles.detalles}>
-                  <div className={styles['fila-datos']}>
+                  <div className={styles["fila-datos"]}>
                     <span className={styles.nombre}>
                       <strong>{r.Cliente || "Sin Nombre"}</strong>
                     </span>
@@ -84,13 +102,21 @@ function RegistroAuto() {
                       {r.Telefono ? `+${r.Telefono}` : "Sin N° celular"}
                     </span>
                   </div>
-                  <p className={styles.nota}>Nota: {r.Nota || "----"}</p>
+                  <p className={styles.nota}>Nota: {r.nota || "----"}</p>
                 </div>
               )}
             </div>
           </div>
         ))}
       </div>
+
+      {/* 🪟 Modal de añadir */}
+      {mostrarAñadir && <AñadirAutoRegistro onClose={cerrarAñadir} />}
+
+      {/* 🪟 Modal de editar */}
+      {mostrarEditar && (
+        <EditarAutoRegistro registro={registroSeleccionado} onClose={cerrarEdicion} />
+      )}
     </div>
   );
 }

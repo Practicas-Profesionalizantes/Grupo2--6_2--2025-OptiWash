@@ -47,7 +47,6 @@ export default function InformeMenu() {
       <div className={styles['informe-wrapper']}>
         <h1 className={styles['informe-title']}>Informes</h1>
 
-        {/* Botones de navegación */}
         <div className={styles['nav-buttons']}>
           <button
             onClick={() => cambiarModulo('inventario')}
@@ -80,7 +79,6 @@ export default function InformeMenu() {
               className={styles['calendar-button']}
               onClick={toggleMenu}
             >
-              {/* PON AQUÍ TU ÍCONO DE CALENDARIO */}
               <span className={styles['calendar-icon']}><img src={calendario}/></span>
             </button>
 

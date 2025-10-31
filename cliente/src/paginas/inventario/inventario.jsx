@@ -40,10 +40,10 @@ function Inventario() {
   return (
     <div className={styles.cuerpo}>
       <div className={styles.opciones}>
-        <button className={styles['boton-i']} id="agregar" onClick={() => abrirModal('agregar')}>
+        <button className={styles['boton-i']}  id={styles.agregar} onClick={() => abrirModal('agregar')}>
           Agregar
         </button>
-        <button className={styles['boton-i']} id="utilizado" onClick={() => abrirModal('utilizar')}>
+        <button className={styles['boton-i']} id={styles.utilizado} onClick={() => abrirModal('utilizar')}>
           Utilizado
         </button>
       </div>
@@ -56,11 +56,11 @@ function Inventario() {
               <img src={p.Img} alt={p.Nombre}/>
             </div>
             <div className={styles.down}>
-              <p>Total:</p>
-              <h2 className={styles.litros}>{p.Bidon} Bidones</h2>
+              <p>Bidones:</p>
+              <h2 className={styles.litros}>{p.Bidon} </h2>
             </div>
             <div className={styles['precio-tarjeta']}>
-              ${parseFloat(p.precio_unitario || 0).toFixed(2)}/Bidón
+              ${parseFloat(p.precio_unitario || 0).toFixed(2)}c/u
             </div>
           </div>
         ))}

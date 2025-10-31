@@ -9,7 +9,6 @@ import DetalleInformeAutos from "./paginas/Informe/Autos-Lavados/detalleinformeA
 import DetalleInformeAsistencias from "./paginas/Informe/asistencias/DetalleInformeAsistencia.jsx";
 import DetalleInformeInventario from "./paginas/Informe/inventario/DetalleInformeInventario.jsx";
 import Empleados from "./paginas/Empelados/empleados.jsx";
-import Editar from "./componentes/Registro_Autos/editar.jsx"
 import './app.css'
 import RegistroAuto from "./paginas/Registro_Autos/registro_autos.jsx";
 
@@ -31,7 +30,6 @@ function App() {
               <Route path="/informes/inventario/detalle" element={<DetalleInformeInventario />} />
 
               <Route path="/empleados" element={<Empleados />} />
-              <Route path="/editar" element={<Editar />} />
               <Route path="/registro_autos" element={<RegistroAuto></RegistroAuto>} />
 
             </Routes>
