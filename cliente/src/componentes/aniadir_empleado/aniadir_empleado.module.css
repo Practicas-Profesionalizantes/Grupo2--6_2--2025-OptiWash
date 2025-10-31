@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+.contenedorEmpleado {
+  background-color: #d3d3d3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+}
+
+.icono i {
+  font-size: 2rem;
+  color: #1c3144;
+  margin-bottom: 0.5rem;
+}
+
+.tituloEmpleado {
+  color: #1c3144;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+}
+
+.formEmpleado {
+  background-color: #e2e2e2;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid #8f8f8f;
+}
+
+.formEmpleado label {
+  font-weight: 600;
+  color: #1c3144;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.formEmpleado input {
+  border: none;
+  border-bottom: 1px solid #a0a0a0;
+  padding: 0.3rem 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: #1c3144;
+}
+
+.btnCrear {
+  margin-top: 1.2rem;
+  background-color: #497558;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btnCrear:hover {
+  background-color: #3b5e49;
+}
+
+.btnCrear i {
+  margin-right: 4px;
+}

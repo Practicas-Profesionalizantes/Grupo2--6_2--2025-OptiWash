@@ -1,0 +1,197 @@
+.empleadoRegistro {
+  background-color: #d9d9d9;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+
+  /* 🔹 Centramos todo el contenido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* 🔹 Espacio interno */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* ---------- Título ---------- */
+.titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1c3144;
+  text-align: center;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+/* ---------- Botones principales ---------- */
+.botonesAcciones {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.6rem 1.6rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.verde {
+  background-color: #497558 !important;
+}
+.verde:hover {
+  background-color: #3a6149 !important;
+}
+
+.gris {
+  background-color: #737373 !important;
+}
+.gris:hover {
+  background-color: #5c5c5c !important;
+}
+
+.rojo {
+  background-color: #7a5550 !important;
+}
+.rojo:hover {
+  background-color: #5e3e39 !important;
+}
+
+.listaEmpleados {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  width: 100%;
+  max-width: 600px;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+.tarjetaEmpleado {
+  display: flex;
+  align-items: stretch;
+  width: 270px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #1c3144 !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tarjetaEmpleado:hover {
+  transform: scale(1.05);
+  box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.35);
+}
+
+.seleccionada {
+  outline: 3px solid #497558;
+  transform: scale(1.05);
+}
+
+.columnaId {
+  background-color: #1c3144 !important;
+  width: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 0 0 10px;
+  padding: 0.5rem 0;
+}
+
+.idText {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.idCirculo {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+
+.activo {
+  background-color: transparent;
+}
+
+.contenidoEmpleado {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid #1c3144;
+  overflow: hidden;
+}
+
+.tit {
+  background-color: #d9e2e3;
+  color: #000;
+  font-weight: 700;
+  padding: 0.6rem;
+  margin: 0;
+  border-bottom: 1px solid #1c3144;
+}
+
+.tit2 {
+  background-color: #2e465d;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.6rem;
+  margin: 0;
+  border-top: 1px solid #3a5269;
+}
+
+.tarjetaEmpleado p {
+  font-size: 0.95rem;
+}
+
+.listaEmpleados::-webkit-scrollbar {
+  width: 6px;
+}
+.listaEmpleados::-webkit-scrollbar-thumb {
+  background-color: #1c3144;
+  border-radius: 4px;
+}
+
+.btnEliminar {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btnEliminar:hover {
+  transform: scale(1.2);
+  color: #ff5555;
+}
