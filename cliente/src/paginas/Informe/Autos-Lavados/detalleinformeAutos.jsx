@@ -1,4 +1,4 @@
-// DetalleInformeAutos.jsx
+
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './DetalleInformeAutos.module.css';
@@ -22,12 +22,12 @@ export default function DetalleInformeAutos() {
   const cargarDetalleLavados = async () => {
     setLoading(true);
     try {
-      // Formatear fechas al formato YYYY-MM-DD
+      
       const inicio = fechaInicio.split('T')[0];
       const fin = fechaFin.split('T')[0];
       
       const url = `/api/informes/autos/detalle?fecha_inicio=${inicio}&fecha_fin=${fin}`;
-      console.log('URL de petición:', url); // Debug
+      console.log('URL de petición:', url); 
       
       const response = await fetch(url);
       
@@ -36,13 +36,13 @@ export default function DetalleInformeAutos() {
       }
       
       const data = await response.json();
-      console.log('Datos recibidos:', data); // Para debug
+      console.log('Datos recibidos:', data); 
       
-      // Verificar que los datos tengan la estructura correcta
+      
       if (data.length > 0 && data[0].Nombre !== undefined) {
         setLavados(Array.isArray(data) ? data : []);
         
-        // Calcular ganancia total
+        
         const total = data.reduce((sum, lavado) => sum + parseFloat(lavado.Precio || 0), 0);
         setGananciaTotal(total);
       } else {

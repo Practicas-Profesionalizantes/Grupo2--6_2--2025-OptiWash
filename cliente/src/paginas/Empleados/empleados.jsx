@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./empleado.module.css"; 
+import styles from "./empleado.module.css";
 
 function Empleados() {
   const [empleados, setEmpleados] = useState([]);

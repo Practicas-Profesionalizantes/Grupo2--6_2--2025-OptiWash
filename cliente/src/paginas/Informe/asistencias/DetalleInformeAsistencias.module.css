@@ -1,4 +1,4 @@
-/* DetalleInformeAsistencias.css */
+
 
 .detalle-asistencias-container {
   min-height: 100vh;
@@ -26,7 +26,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Badges superiores */
+
 .resumen-badges {
   display: flex;
   gap: 0.75rem;
@@ -67,7 +67,7 @@
   color: #1f2937;
 }
 
-/* Lista de empleados */
+
 .empleados-list {
   display: flex;
   flex-direction: column;
@@ -96,14 +96,14 @@
   align-items: center;
 }
 
-/* Gráfico */
+
 .grafico-container {
   flex-shrink: 0;
   width: 120px;
   height: 120px;
 }
 
-/* Información del empleado */
+
 .empleado-info {
   flex: 1;
   display: flex;
@@ -144,7 +144,7 @@
   background-color: #f3f4f6;
 }
 
-/* Botón volver */
+
 .btn-volver {
   width: 100%;
   padding: 0.875rem;
@@ -162,7 +162,7 @@
   background-color: #374151;
 }
 
-/* Loading */
+
 .loading-container {
   display: flex;
   justify-content: center;

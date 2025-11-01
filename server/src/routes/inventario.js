@@ -1,10 +1,8 @@
-// routes/inventario.js
 import express from 'express';
 import db from '../db.js';
 
 const router = express.Router();
 
-// Obtener todos los productos
 router.get('/', (req, res) => {
   db.query('SELECT * FROM Producto ORDER BY Nombre', (err, results) => {
     if (err) {
@@ -15,7 +13,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Actualizar producto (cantidad y precio)
 router.put('/actualizar/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const cantidad = parseFloat(req.body.cantidad);
@@ -25,7 +22,6 @@ router.put('/actualizar/:id', (req, res) => {
     return res.status(400).json({ mensaje: 'La cantidad no es válida' });
   }
 
-  // Obtener el stock actual
   const sqlSelect = 'SELECT Bidon, precio_unitario FROM Producto WHERE ID = ?';
   db.query(sqlSelect, [id], (err, results) => {
     if (err) {
@@ -42,17 +38,14 @@ router.put('/actualizar/:id', (req, res) => {
 
     const nuevoStock = stockActual + cantidad;
 
-    // Validar que no quede stock negativo
     if (nuevoStock < 0) {
       return res.status(400).json({ 
         mensaje: 'No puedes usar más productos de los que hay en stock' 
       });
     }
 
-    // Determinar precio final: si se envió precio, usarlo; sino mantener el actual
     const precioFinal = !isNaN(precio) && precio > 0 ? precio : precioActual;
 
-    // Actualizar stock y precio
     const sqlUpdate = 'UPDATE Producto SET Bidon = ?, precio_unitario = ? WHERE ID = ?';
     db.query(sqlUpdate, [nuevoStock, precioFinal, id], (err) => {
       if (err) {

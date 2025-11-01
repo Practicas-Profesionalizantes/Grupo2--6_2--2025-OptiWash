@@ -1,12 +1,12 @@
-// routes/empleado.js
+
 import express from "express";
 import db from "../db.js";
 
 const router = express.Router();
 
-// ===============================
-// GET: obtener todos los empleados
-// ===============================
+
+
+
 router.get("/", (req, res) => {
   const sql = "SELECT * FROM Empleado ORDER BY ID DESC";
   db.query(sql, (err, results) => {
@@ -15,9 +15,9 @@ router.get("/", (req, res) => {
   });
 });
 
-// ===============================
-// POST: agregar un nuevo empleado
-// ===============================
+
+
+
 router.post("/", (req, res) => {
   const { Nombre, Cargo, celular } = req.body;
 
@@ -32,9 +32,9 @@ router.post("/", (req, res) => {
   });
 });
 
-// ===============================
-// PUT: actualizar empleado existente
-// ===============================
+
+
+
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const { Nombre, Cargo, celular } = req.body;
@@ -50,9 +50,9 @@ router.put("/:id", (req, res) => {
   });
 });
 
-// ===============================
-// DELETE: eliminar empleado
-// ===============================
+
+
+
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   const sql = "DELETE FROM Empleado WHERE ID = ?";

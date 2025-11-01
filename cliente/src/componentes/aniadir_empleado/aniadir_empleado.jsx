@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./aniadir_empleado.module.css"; 
+import styles from "./aniadir_empleado.module.css";
 import user from "../../assets/emplado/user.png";
-
-// ✅ usando module.css
 
 function Aniadir_empleado() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Si viene desde editar, recibimos el empleado seleccionado
   const empleadoEdit = location.state?.empleado || null;
 
   const [form, setForm] = useState({
@@ -20,7 +17,6 @@ function Aniadir_empleado() {
     celular: "",
   });
 
-  // Si se está editando, completar los datos al cargar el componente
   useEffect(() => {
     if (empleadoEdit) {
       const partes = empleadoEdit.Nombre.split(" ");
@@ -46,14 +42,13 @@ function Aniadir_empleado() {
 
     try {
       if (empleadoEdit) {
-        // 🟠 EDITAR
         await axios.put(`/api/empleado/${empleadoEdit.ID}`, {
           Nombre: nombreCompleto,
           Cargo: form.Cargo,
           celular: form.celular,
         });
       } else {
-        // 🟢 CREAR
+        
         await axios.post("/api/empleado", {
           Nombre: nombreCompleto,
           Cargo: form.Cargo,
@@ -115,11 +110,7 @@ function Aniadir_empleado() {
         />
 
         <button type="submit" className={styles.btnCrear}>
-          <i
-            className={`fa-solid ${
-              empleadoEdit ? "fa-pen" : "fa-plus"
-            }`}
-          ></i>{" "}
+          <i className={`fa-solid ${empleadoEdit ? "fa-pen" : "fa-plus"}`}></i>{" "}
           {empleadoEdit ? "Guardar Cambios" : "+ Crear"}
         </button>
       </form>

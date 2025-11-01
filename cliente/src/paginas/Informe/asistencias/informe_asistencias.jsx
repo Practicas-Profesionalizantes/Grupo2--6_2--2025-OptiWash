@@ -1,4 +1,4 @@
-// InformeAsistencias.jsx
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,13 +44,13 @@ export default function InformeAsistencias({ agrupacion }) {
     const fin = new Date(fechaFin);
     
     if (agrupacion === 'mes') {
-      // Formato para mes: "Octubre 2025"
+      
       return inicio.toLocaleDateString('es-AR', {
         month: 'long',
         year: 'numeric'
       });
     } else {
-      // Formato para semana: "1/10 - 7/10/2025"
+      
       const inicioStr = inicio.toLocaleDateString('es-AR', {
         day: 'numeric',
         month: 'numeric'

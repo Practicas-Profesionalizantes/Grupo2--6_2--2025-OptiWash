@@ -11,7 +11,6 @@ function Nav() {
   return (
 
     <nav className={styles.nav}>
-      {/* Icono hamburguesa a la izquierda */}
 
       <button className={styles.hamburguesa} onClick={toggleMenu}>
         <span className={`${styles.barra} ${menuAbierto ? styles.activa : ""}`}></span>
@@ -19,10 +18,8 @@ function Nav() {
         <span className={`${styles.barra} ${menuAbierto ? styles.activa : ""}`}></span>
       </button>
 
-      {/* Logo a la derecha */}
       <img src={logo} alt="logo" className={styles.logo} />
 
-      {/* Menú lateral izquierdo */}
       <div className={`${styles['menu-lateral']} ${menuAbierto ? styles.activo : ""}`}>
         <div className={styles.men}>
           <h2 className={styles.men2}>Menu</h2>
@@ -92,7 +89,6 @@ function Nav() {
         <span className={styles.linea1}></span>
       </div>
 
-      {/* Fondo semitransparente cuando el menú está activo */}
       {menuAbierto && <div className={styles.overlay} onClick={toggleMenu}></div>}
     </nav>
   );

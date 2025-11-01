@@ -1,4 +1,4 @@
-// DetalleInformeAsistencias.jsx
+
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
@@ -41,7 +41,7 @@ export default function DetalleInformeAsistencias() {
       if (data.length > 0 && data[0].Nombre !== undefined) {
         setAsistencias(Array.isArray(data) ? data : []);
         
-        // Calcular estadísticas por empleado
+        
         const stats = data.reduce((acc, asist) => {
           if (!acc[asist.ID_Empleado]) {
             acc[asist.ID_Empleado] = {
@@ -90,7 +90,7 @@ export default function DetalleInformeAsistencias() {
   };
 
   const calcularPagado = (empleado) => {
-    // Asumiendo que cada día presente vale 10000
+    
     return empleado.presentes * 10000;
   };
 

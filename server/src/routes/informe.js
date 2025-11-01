@@ -1,11 +1,11 @@
-// routes/informe.js
+
 import express from 'express';
 import bd from '../db.js';
 const router = express.Router();
 
-// IMPORTANTE: Las rutas específicas van PRIMERO, antes de las rutas con parámetros
 
-// Obtener detalle de lavados por rango de fechas
+
+
 router.get('/autos/detalle', (req, res) => {
   const { fecha_inicio, fecha_fin } = req.query;
   
@@ -47,7 +47,7 @@ router.get('/autos/detalle', (req, res) => {
   });
 });
 
-// Obtener informes de autos agrupados por período
+
 router.get('/autos/:agrupacion', (req, res) => {
   const { agrupacion } = req.params;
   
@@ -93,7 +93,7 @@ router.get('/autos/:agrupacion', (req, res) => {
 });
 
 
-// Obtener detalle de asistencias por rango de fechas
+
 router.get('/asistencias/detalle', (req, res) => {
   const { fecha_inicio, fecha_fin } = req.query;
   
@@ -132,7 +132,7 @@ router.get('/asistencias/detalle', (req, res) => {
   });
 });
 
-// Obtener informes de asistencias agrupados por período
+
 router.get('/asistencias/:agrupacion', (req, res) => {
   const { agrupacion } = req.params;
   
@@ -179,7 +179,7 @@ router.get('/asistencias/:agrupacion', (req, res) => {
   });
 });
 
-// Obtener detalle de inventario por rango de fechas
+
 router.get('/inventario/detalle', (req, res) => {
   const { fecha_inicio, fecha_fin, tipo } = req.query;
   
@@ -221,7 +221,7 @@ router.get('/inventario/detalle', (req, res) => {
   });
 });
 
-// Obtener informes de inventario agrupados por período
+
 router.get('/inventario/:agrupacion', (req, res) => {
   const { agrupacion } = req.params;
   

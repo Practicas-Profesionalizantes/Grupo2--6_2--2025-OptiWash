@@ -1,8 +1,8 @@
-/* ===== Fuentes ===== */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
 
 * {
   margin: 0;
@@ -11,7 +11,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* ---------- NAV PRINCIPAL ---------- */
+
 .nav {
   background-color: #1C3144;
   width: 100%;
@@ -30,7 +30,7 @@
   max-width: 100%;
 }
 
-/* ---------- LINKS PRINCIPALES ---------- */
+
 .navLink {
   color: white;
   text-decoration: none;
@@ -75,7 +75,7 @@
   
 }
 
-/* ---------- BOTONES DE TEXTO ---------- */
+
 .botones {
   background-color: transparent;
   border: none;
@@ -94,7 +94,7 @@
   transform: scale(1.05);
 }
 
-/* ---------- SECCIONES DEL MENÚ ---------- */
+
 .men {
   font-size: 25px;
   width: auto;
@@ -122,11 +122,11 @@
   width: 80%;
 }
 
-/* ---------- MENÚ LATERAL IZQUIERDO ---------- */
+
 .menu-lateral {
   position: fixed;
   top: 0;
-  left: -260px; /* oculto por defecto */
+  left: -260px;
   height: 100vh;
   width: 240px;
   background-color: white;
@@ -137,14 +137,14 @@
   gap: 0.6rem;
   transition: left 0.3s ease-in-out;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1002; /* más alto que el overlay */
+  z-index: 1002;
 }
 
 .menu-lateral.activo {
-  left: 0; /* se muestra */
+  left: 0;
 }
 
-/* ---------- FONDO OSCURECIDO (overlay) ---------- */
+
 .overlay {
   position: fixed;
   top: 0;
@@ -152,7 +152,7 @@
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1000; /* debajo del menú */
+  z-index: 1000;
   animation: fadeIn 0.3s ease;
 }
 
@@ -161,7 +161,7 @@
   to { opacity: 1; }
 }
 
-/* ---------- HAMBURGUESA ---------- */
+
 .hamburguesa {
   display: none;
   flex-direction: column;
@@ -182,7 +182,7 @@
   transition: all 0.3s ease;
 }
 
-/* Animación al activar */
+
 .barra.activa {
   background-color: black;
 }
@@ -197,7 +197,7 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* ---------- RESPONSIVE ---------- */
+
 @media (max-width: 1024px) {
   .navLink {
     font-size: 24px;
@@ -211,7 +211,7 @@
 
 @media (max-width: 768px) {
   .hamburguesa {
-    display: flex; /* visible en móvil */
+    display: flex;
   }
 
   .menu-lateral {

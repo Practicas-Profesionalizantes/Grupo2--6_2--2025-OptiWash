@@ -1,12 +1,8 @@
-// routes/registro_autos.js
 import express from 'express';
 import db from '../db.js';
 
 const router = express.Router();
 
-// ==========================
-// GET: traer todos los registros
-// ==========================
 router.get('/', (req, res) => {
   const sql = `
     SELECT r.ID, c.ID AS ID_Cliente, v.ID AS ID_Vehiculo, s.ID AS ID_Servicio,
@@ -24,21 +20,16 @@ router.get('/', (req, res) => {
   });
 });
 
-// ==========================
-// POST: crear un nuevo registro (sin necesidad de id_servicio manual)
-// ==========================
+
 router.post('/', (req, res) => {
   const { cliente, modelo, patente, telefono, id_servicio, precio, nota } = req.body;
 
-  // Si no se envía id_servicio, se usa 1 por defecto (Lavado Básico)
   const servicioAsignado = id_servicio || 1;
 
-  // Validar datos mínimos requeridos
   if (!cliente || !modelo || !patente || !telefono) {
     return res.status(400).json({ mensaje: 'Faltan datos' });
   }
 
-  // 1️⃣ Insertar cliente
   db.query(
     'INSERT INTO Cliente (Nombre, Telefono) VALUES (?, ?)',
     [cliente, telefono],
@@ -46,7 +37,6 @@ router.post('/', (req, res) => {
       if (err) return res.status(500).json({ mensaje: 'Error al crear cliente' });
       const id_cliente = resultCliente.insertId;
 
-      // 2️⃣ Insertar vehículo
       db.query(
         'INSERT INTO Vehiculo (ID_Cliente, Patente, Marca) VALUES (?, ?, ?)',
         [id_cliente, patente, modelo],
@@ -54,7 +44,6 @@ router.post('/', (req, res) => {
           if (err) return res.status(500).json({ mensaje: 'Error al crear vehículo' });
           const id_vehiculo = resultVehiculo.insertId;
 
-          // 3️⃣ Obtener el precio original del servicio para comparación
           db.query(
             'SELECT Precio FROM Servicio WHERE ID = ?',
             [servicioAsignado],
@@ -65,13 +54,11 @@ router.post('/', (req, res) => {
               const precioFinal = precio || precioOriginal;
               let notaFinal = nota || '';
 
-              // Si el precio es diferente al original, agregar info a la nota
               if (precio && parseFloat(precio) !== parseFloat(precioOriginal)) {
                 const infoPrecio = `Precio personalizado: $${precio} (Original: $${precioOriginal})`;
                 notaFinal = notaFinal ? `${notaFinal}\n\n${infoPrecio}` : infoPrecio;
               }
 
-              // 4️⃣ Insertar registro de lavado con la nota completa
               db.query(
                 'INSERT INTO Registro_Lavado (ID_Cliente, ID_Vehiculo, ID_Servicio, nota) VALUES (?, ?, ?, ?)',
                 [id_cliente, id_vehiculo, servicioAsignado, notaFinal],
@@ -93,9 +80,7 @@ router.post('/', (req, res) => {
   );
 });
 
-// ==========================
-// PUT: actualizar un registro existente
-// ==========================
+
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { cliente, modelo, patente, telefono, id_servicio } = req.body;
@@ -117,21 +102,18 @@ router.put('/:id', (req, res) => {
       const id_cliente = registros[0].ID_Cliente;
       const id_vehiculo = registros[0].ID_Vehiculo;
 
-      // Actualizar cliente
       db.query('UPDATE Cliente SET Nombre = ?, Telefono = ? WHERE ID = ?', [
         cliente,
         telefono,
         id_cliente,
       ]);
 
-      // Actualizar vehículo
       db.query('UPDATE Vehiculo SET Marca = ?, Patente = ? WHERE ID = ?', [
         modelo,
         patente,
         id_vehiculo,
       ]);
 
-      // Actualizar servicio (usando el valor por defecto si no se envía)
       db.query(
         'UPDATE Registro_Lavado SET ID_Servicio = ? WHERE ID = ?',
         [servicioAsignado, id],

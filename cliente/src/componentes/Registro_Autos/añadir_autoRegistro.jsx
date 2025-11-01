@@ -1,4 +1,4 @@
-// AñadirAutoRegistro.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./añadir_autosRegistro.module.css";
@@ -56,7 +56,7 @@ function AñadirAutoRegistro({ onClose }) {
       };
 
       await axios.post("/api/registros", dataToSend);
-      onClose(true); // ✅ cerrar modal y recargar lista
+      onClose(true); 
     } catch (error) {
       console.error("Error al agregar registro:", error);
       alert("❌ Error al agregar registro");

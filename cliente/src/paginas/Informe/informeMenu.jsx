@@ -1,4 +1,4 @@
-// InformeMenu.jsx
+
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -11,8 +11,7 @@ import styles from './InformeMenu.module.css';
 export default function InformeMenu() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mostrarMenu, setMostrarMenu] = useState(false);
-
-  // Leer módulo y agrupación de la URL, con valores por defecto
+  
   const moduloActivo = searchParams.get('modulo') || 'autos';
   const agrupacion = searchParams.get('agrupacion') || 'mes';
 

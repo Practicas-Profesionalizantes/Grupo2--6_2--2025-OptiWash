@@ -55,7 +55,7 @@ html, body {
   background-color: #c7d6d5;
 }
 
-/* Contenedor responsive */
+
 .contenedor{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -71,7 +71,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Tarjeta */
+
 .tarjetas-i{
   display: flex;
   flex-direction: column;
@@ -84,7 +84,7 @@ html, body {
   padding: .75rem;
 }
 
-/* Título de producto */
+
 .Nombre{
   background: #ECEBF3;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
@@ -96,7 +96,7 @@ html, body {
   font-weight: 600;
 }
 
-/* Contenedor de imagen */
+
 .img-productos{
   display: flex;
   align-items: center;
@@ -114,7 +114,7 @@ html, body {
   object-fit: contain;
 }
 
-/* Pie de tarjeta */
+
 .down{
   margin-top: auto;
   display: flex;
@@ -139,7 +139,7 @@ html, body {
   font-weight: 600;
 }
 
-/* Precio en tarjeta */
+
 .precio-tarjeta {
   margin-top: 0.5rem;
   text-align: center;
@@ -151,7 +151,7 @@ html, body {
   border-radius: 5px;
 }
 
-/* Breakpoints */
+
 @media (max-width: 349px) {
   .contenedor {
     grid-template-columns: 1fr;

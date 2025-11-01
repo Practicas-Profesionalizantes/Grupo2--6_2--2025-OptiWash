@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-/* Botones de navegación */
+
 .nav-buttons {
   display: flex;
   gap: 0.5rem;
@@ -156,7 +156,7 @@
   font-size: 0.875rem;
 }
 
-/* Loading spinner */
+
 .loading-container {
   display: flex;
   justify-content: center;

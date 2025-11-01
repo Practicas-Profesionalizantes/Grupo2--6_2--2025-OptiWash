@@ -1,4 +1,4 @@
-// ModalMovimiento.jsx
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './ModalMovimiento.module.css';
@@ -12,7 +12,7 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
   const keyMovimientos = `inventario_${tipo}_movimientos`;
   const keyPrecios = `inventario_${tipo}_precios`;
 
-  // Cargar última configuración guardada al montar el componente
+  
   useEffect(() => {
     const guardadoMovimientos = localStorage.getItem(keyMovimientos);
     const guardadoPrecios = localStorage.getItem(keyPrecios);
@@ -25,14 +25,14 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
     }
   }, []);
 
-  // Guardar automáticamente cuando cambian los movimientos
+  
   useEffect(() => {
     if (Object.keys(movimientos).length > 0) {
       localStorage.setItem(keyMovimientos, JSON.stringify(movimientos));
     }
   }, [movimientos, keyMovimientos]);
 
-  // Guardar automáticamente cuando cambian los precios
+  
   useEffect(() => {
     if (Object.keys(precios).length > 0) {
       localStorage.setItem(keyPrecios, JSON.stringify(precios));

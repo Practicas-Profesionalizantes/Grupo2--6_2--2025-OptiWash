@@ -1,6 +1,6 @@
-/* VistaDetallada.css */
 
-/* Modal Overlay - Solo para VistaDetallada */
+
+
 .vista-detallada-modal {
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@
   position: relative;
 }
 
-/* Header con día y botón confirmar en la misma fila */
+
 .vista-detallada-contenido .header-row {
   display: flex;
   justify-content: space-between;
@@ -68,7 +68,7 @@
   margin-left: 5px;
 }
 
-/* Botón Confirmar - arriba a la derecha */
+
 .vista-detallada-contenido .btn-confirmar-header {
   background-color: transparent;
   color: white;
@@ -88,7 +88,7 @@
   color: #1C3144;
 }
 
-/* Tabla - SOLO dentro de VistaDetallada */
+
 .vista-detallada-contenido table {
   width: 100%;
   border-collapse: collapse;
@@ -111,7 +111,7 @@
   border-right: 2px solid #1C3144;
 }
 
-/* Redondeado en las esquinas superiores del thead */
+
 .vista-detallada-contenido thead th:first-child {
   border-top-left-radius: 10px;
 }
@@ -120,7 +120,7 @@
   border-top-right-radius: 10px;
 }
 
-/* Ajustar anchos de columnas */
+
 .vista-detallada-contenido thead th:nth-child(1) {
   width: 30%;
   padding-left: 20px;
@@ -175,7 +175,7 @@
   width: 25%;
 }
 
-/* Centrar checkbox de P.D. */
+
 .vista-detallada-contenido tbody td:nth-child(3) {
   width: 15%;
   text-align: center;
@@ -185,7 +185,7 @@
   width: 30%;
 }
 
-/* Inputs y Selects - SOLO en VistaDetallada */
+
 .vista-detallada-contenido select,
 .vista-detallada-contenido input[type="number"] {
   background-color: rgba(255, 255, 255, 0.9);
@@ -221,7 +221,7 @@
   text-align: center;
 }
 
-/* Checkbox - SOLO en VistaDetallada */
+
 .vista-detallada-contenido input[type="checkbox"] {
   width: 22px;
   height: 22px;
@@ -229,7 +229,7 @@
   accent-color: #1C3144;
 }
 
-/* Mensaje flotante - fuera del modal */
+
 .mensaje-flotante {
   position: fixed;
   top: 20px;
@@ -258,7 +258,7 @@
   }
 }
 
-/* Loading y Error estados */
+
 .vista-detallada-contenido p {
   color: white;
   text-align: center;
@@ -266,7 +266,7 @@
   padding: 20px 30px;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .vista-detallada-contenido {
     width: 95%;
@@ -307,7 +307,7 @@
     max-width: 90%;
   }
 
-  /* Tabla responsive con scroll horizontal */
+ 
   .vista-detallada-contenido table {
     display: block;
     overflow-x: auto;
@@ -364,7 +364,7 @@
   }
 }
 
-/* Para pantallas muy pequeñas */
+
 @media (max-width: 480px) {
   .vista-detallada-contenido {
     width: 98%;
