@@ -1,0 +1,68 @@
+# OptiWash
+
+Sistema de gestión para lavadero de autos.
+
+## Requisitos Previos
+
+- Node.js (v14 o superior)
+- MySQL
+- Git
+
+## Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone -b Sistema [URL_DEL_REPOSITORIO]
+cd [NOMBRE_DEL_PROYECTO]
+```
+
+**Nota:** El código del sistema se encuentra en la rama `Sistema`. Si ya clonaste el repositorio, cambia a esta rama con:
+
+```bash
+git checkout Sistema
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+npm install concurrently --save-dev
+cd cliente && npm install && cd ..
+cd server && npm install && cd ..
+```
+
+### 3. Configurar variables de entorno
+
+Crea un archivo `.env` en la carpeta `server/` con:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=12345
+DB_NAME=OptiWash
+PORT=3001
+```
+
+### 4. Crear la base de datos
+
+```sql
+CREATE DATABASE OptiWash;
+```
+
+## Ejecución
+
+Desde la raíz del proyecto:
+
+```bash
+npm run dev
+```
+
+Este comando inicia automáticamente el servidor y el cliente de forma concurrente.
+
+- **Servidor:** `http://localhost:3001`
+- **Cliente:** `http://localhost:3000`
+
+---
+
+**¡Listo!** El sistema ya debería estar funcionando.
