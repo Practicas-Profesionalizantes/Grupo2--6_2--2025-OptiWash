@@ -12,11 +12,11 @@ router.get("/semana", (req, res) => {
       e.ID AS empleado_id,
       e.Nombre AS empleado,
       DATE(semana.fecha) AS fecha,
-      MAX(a.ID_) AS asistencia_id,
+      MAX(a.ID) AS asistencia_id,
       MAX(a.estado) AS estado,
-      MAX(p.ID_) AS pagado_id,
+      MAX(p.ID) AS pagado_id,
       MAX(p.Pagado) AS pagado,
-      MAX(v.ID_) AS vale_id,
+      MAX(v.ID) AS vale_id,
       MAX(v.vale) AS vale
     FROM Empleado e
     CROSS JOIN (
@@ -188,7 +188,7 @@ router.put("/actualizar", (req, res) => {
 
     if (estado) {
       if (asistenciaId) {
-        const sqlUpdate = `UPDATE Asistencia SET estado = ? WHERE ID_ = ?`;
+        const sqlUpdate = `UPDATE Asistencia SET estado = ? WHERE ID = ?`;
         queryPromises.push(
           new Promise((resolve, reject) => {
             connection.query(sqlUpdate, [estado, asistenciaId], 
@@ -210,7 +210,7 @@ router.put("/actualizar", (req, res) => {
         );
       }
     } else if (asistenciaId) {
-      const sqlDelete = `DELETE FROM Asistencia WHERE ID_ = ?`;
+      const sqlDelete = `DELETE FROM Asistencia WHERE ID = ?`;
       queryPromises.push(
         new Promise((resolve, reject) => {
           connection.query(sqlDelete, [asistenciaId],
@@ -221,7 +221,7 @@ router.put("/actualizar", (req, res) => {
     }
 
     if (pagadoId) {
-      const sqlUpdate = `UPDATE Pagado SET Pagado = ? WHERE ID_ = ?`;
+      const sqlUpdate = `UPDATE Pagado SET Pagado = ? WHERE ID = ?`;
       queryPromises.push(
         new Promise((resolve, reject) => {
           connection.query(sqlUpdate, [pagado ? 1 : 0, pagadoId],
@@ -245,7 +245,7 @@ router.put("/actualizar", (req, res) => {
 
     if (vale && vale > 0) {
       if (valeId) {
-        const sqlUpdate = `UPDATE Vale SET vale = ? WHERE ID_ = ?`;
+        const sqlUpdate = `UPDATE Vale SET vale = ? WHERE ID = ?`;
         queryPromises.push(
           new Promise((resolve, reject) => {
             connection.query(sqlUpdate, [vale, valeId],
@@ -267,7 +267,7 @@ router.put("/actualizar", (req, res) => {
         );
       }
     } else if (valeId) {
-      const sqlDelete = `DELETE FROM Vale WHERE ID_ = ?`;
+      const sqlDelete = `DELETE FROM Vale WHERE ID = ?`;
       queryPromises.push(
         new Promise((resolve, reject) => {
           connection.query(sqlDelete, [valeId],

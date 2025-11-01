@@ -26,8 +26,9 @@ function VistaDetallada({ fecha, onClose, onGuardar }) {
 
       try {
         const resEmpleados = await axios.get("/api/empleado", { signal });
-        const listaEmpleados = resEmpleados.data.data || [];
+        const listaEmpleados = resEmpleados.data || [];
         setEmpleados(listaEmpleados);
+        console.log("Empleados cargados:", empleados);
 
         try {
           const resAsistencias = await axios.get(`/api/asistencias/semana?fecha=${fecha}`, { signal });

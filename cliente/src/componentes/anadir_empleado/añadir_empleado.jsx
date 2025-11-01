@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./aniadir_empleado.module.css"; 
+import styles from "./añadir_empleado.module.css"; 
 import user from "../../assets/emplado/user.png";
 
 // ✅ usando module.css
 
-function Aniadir_empleado() {
+function Añadir_empleado() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -127,4 +127,4 @@ function Aniadir_empleado() {
   );
 }
 
-export default Aniadir_empleado;
+export default Añadir_empleado;
