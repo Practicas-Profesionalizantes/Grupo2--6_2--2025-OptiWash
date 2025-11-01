@@ -5,15 +5,17 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
-
 }
 
 main {
   background-color: #ECEBF3;
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
-
 
 .tarjetas-h {
   display: grid;
@@ -23,6 +25,9 @@ main {
   font-family: "Source Serif 4", serif;
   font-optical-sizing: auto;
   font-weight: 500;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .tarjeta-h {
@@ -33,43 +38,71 @@ main {
   background-color: #ECEBF3;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 1rem;
+  padding: 1.5rem;
   overflow: hidden;
   box-shadow: 0px 7px 0px rgb(185, 184, 184);
-  height: auto;  
+  height: auto;
+  min-height: 200px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.tarjeta-h:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 9px 0px rgb(185, 184, 184);
 }
 
 .tarjeta-h h2 {
-  font-size: clamp(1rem, 5vw, 1.5rem); 
+  font-size: clamp(1rem, 4vw, 1.3rem); 
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
 }
 
 .tarjeta-h img {
   width: 100%;
-  max-width: 200px;  
+  max-width: 150px;  
   height: auto;
   object-fit: contain;
   margin-top: 0.5rem;
   border-radius: 10px;
 }
 
-
-
-
 @media (min-width: 768px) {
   .tarjetas-h {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     padding: 2rem;
   }
+  
+  .tarjeta-h {
+    min-height: 250px;
+  }
+  
+  .tarjeta-h img {
+    max-width: 180px;
+  }
 }
-
 
 @media (min-width: 1024px) {
   .tarjetas-h {
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    gap: 2rem;
     padding: 3rem;
+  }
+  
+  .tarjeta-h {
+    min-height: 280px;
+    padding: 2rem;
+  }
+  
+  .tarjeta-h img {
+    max-width: 200px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .tarjetas-h {
+    gap: 2.5rem;
   }
 }
