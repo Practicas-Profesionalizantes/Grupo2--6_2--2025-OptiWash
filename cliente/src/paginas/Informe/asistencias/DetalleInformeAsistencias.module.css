@@ -2,7 +2,7 @@
 
 .detalle-asistencias-container {
   min-height: 100vh;
-  background-color: #e5e7eb;
+  background-color: #D9D9D9;
   padding: 1.5rem;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .empleado-card {
-  background-color: rgb(187, 31, 31);
+  background-color: #ECEBF3;
   border-radius: 1rem;
   border: 2px solid #1f2937;
   padding: 1rem;

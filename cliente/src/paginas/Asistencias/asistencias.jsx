@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./asistencia.module.css";
-
 import imgPresente from "../../assets/asistencia/presente.png";
 import imgAusente from "../../assets/asistencia/ausente.png";
 import imgTarde from "../../assets/asistencia/tarde.png";
