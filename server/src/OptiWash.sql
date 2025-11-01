@@ -39,16 +39,18 @@ CREATE TABLE Registro_Lavado (
 CREATE TABLE Empleado (
 	ID int auto_increment PRIMARY KEY,
 	Nombre VARCHAR(100),
-	Cargo VARCHAR(50)
+	Cargo VARCHAR(50),
+    celular varchar(50)
 );
+
 CREATE TABLE Pagado (
 	ID_ int auto_increment PRIMARY KEY,
 	ID_Empleado INT,
 	Fecha_hora datetime not null,
 	Pagado boolean,
 	foreign key (ID_Empleado) references Empleado(ID)
-	
 );
+
 CREATE TABLE vale (
 	ID_ int auto_increment PRIMARY KEY,
 	ID_Empleado INT,

@@ -9,33 +9,40 @@ import DetalleInformeAutos from "./paginas/Informe/Autos-Lavados/detalleinformeA
 import DetalleInformeAsistencias from "./paginas/Informe/asistencias/DetalleInformeAsistencia.jsx";
 import DetalleInformeInventario from "./paginas/Informe/inventario/DetalleInformeInventario.jsx";
 import Empleados from "./paginas/Empleados/empleados.jsx";
-import './app.css'
+import "./app.css";
 import RegistroAuto from "./paginas/Registro_Autos/registro_autos.jsx";
 import Aniadir_empleado from "./componentes/aniadir_empleado/aniadir_empleado.jsx";
 
 function App() {
-
   return (
-      <BrowserRouter>
-          <Nav></Nav>
-            <Routes>
-              <Route path="/" element={<Home></Home>}/>
-              <Route path="/inventario" element={<Inventario></Inventario>}/>
-              <Route path="/asistencia" element={<Asistencia></Asistencia>}/>
+    <BrowserRouter>
+      <Nav></Nav>
+      <Routes>
+        <Route path="/" element={<Home></Home>} />
+        <Route path="/inventario" element={<Inventario></Inventario>} />
+        <Route path="/asistencia" element={<Asistencia></Asistencia>} />
 
-              <Route path="/vista" element={<VistaDetallada></VistaDetallada>}/>
+        <Route path="/vista" element={<VistaDetallada></VistaDetallada>} />
 
-              <Route path="/informes" element={<InformeMenu></InformeMenu>}/>
-              <Route path="/informes/autos/detalle" element={<DetalleInformeAutos />} />
-              <Route path="/informes/asistencias/detalle" element={<DetalleInformeAsistencias />} />
-              <Route path="/informes/inventario/detalle" element={<DetalleInformeInventario />} />
-              <Route path="/aniadir_empleado" element={<Aniadir_empleado />} />
+        <Route path="/informes" element={<InformeMenu></InformeMenu>} />
+        <Route
+          path="/informes/autos/detalle"
+          element={<DetalleInformeAutos />}
+        />
+        <Route
+          path="/informes/asistencias/detalle"
+          element={<DetalleInformeAsistencias />}
+        />
+        <Route
+          path="/informes/inventario/detalle"
+          element={<DetalleInformeInventario />}
+        />
+        <Route path="/aniadir_empleado" element={<Aniadir_empleado />} />
 
-              <Route path="/empleados" element={<Empleados />} />
-              <Route path="/registro_autos" element={<RegistroAuto></RegistroAuto>} />
-
-            </Routes>
-      </BrowserRouter>
+        <Route path="/empleados" element={<Empleados />} />
+        <Route path="/registro_autos" element={<RegistroAuto></RegistroAuto>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

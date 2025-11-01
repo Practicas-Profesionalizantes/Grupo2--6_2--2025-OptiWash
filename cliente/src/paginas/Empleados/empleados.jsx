@@ -105,7 +105,7 @@ function Empleados() {
                 <strong>Cargo:</strong> {e.Cargo}
               </p>
               <p className={styles.tit2}>
-                <strong>Celular:</strong> {e.Celular}
+                <strong>Celular:</strong> {e.celular}
               </p>
             </div>
           </div>
