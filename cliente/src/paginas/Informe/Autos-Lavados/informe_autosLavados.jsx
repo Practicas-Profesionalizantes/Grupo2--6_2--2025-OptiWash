@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './informe_autosLavados.css';
 
 export default function InformeAutos({ agrupacion }) {
   const [informes, setInformes] = useState([]);
