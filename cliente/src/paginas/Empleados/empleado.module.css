@@ -3,19 +3,16 @@
   min-height: 100vh;
   width: 100%;
   font-family: "Inter", sans-serif;
-
-  /* 🔹 Centramos todo el contenido */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  /* 🔹 Espacio interno */
+  padding-top: 20px;
+ 
   padding: 2rem;
   box-sizing: border-box;
 }
 
-/* ---------- Título ---------- */
+
 .titulo {
   font-size: 1.6rem;
   font-weight: 700;
@@ -25,7 +22,7 @@
   margin-bottom: 2rem;
 }
 
-/* ---------- Botones principales ---------- */
+
 .botonesAcciones {
   display: flex;
   gap: 1rem;
