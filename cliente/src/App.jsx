@@ -7,7 +7,7 @@ import Registro_autos from "./paginas/registro_autos";
 import Nav from "./componentes/navbar";
 import Editar from "./componentes/editar"; // o el componente que quieras abrir
 import Empleados from "./paginas/empleados"; // 👈 asegúrate de tenerlo
-
+import Aniadir_empleado from "./componentes/aniadir_empleado";
 
 function App() {
   const [tema, setTema] = useState('#ffffff');
@@ -30,6 +30,7 @@ function App() {
               <Route path="/registro_autos" element={<Registro_autos />}/>
               <Route path="/editar" element={<Editar />} />
               <Route path="/empleados" element={<Empleados />} />
+              <Route path="/aniadir_empleado" element={<Aniadir_empleado />} />
 
             </Routes>
 

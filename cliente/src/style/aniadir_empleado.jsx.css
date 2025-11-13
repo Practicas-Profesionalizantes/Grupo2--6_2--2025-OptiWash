@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+.contenedor-empleado {
+  background-color: #d3d3d3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------- Ícono ---------- */
+.icono i {
+  font-size: 2rem;
+  color: #1c3144;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Título ---------- */
+.titulo-empleado {
+  color: #1c3144;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Formulario ---------- */
+.form-empleado {
+  background-color: #e2e2e2;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid #8f8f8f;
+}
+
+.form-empleado label {
+  font-weight: 600;
+  color: #1c3144;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-empleado input {
+  border: none;
+  border-bottom: 1px solid #a0a0a0;
+  padding: 0.3rem 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: #1c3144;
+}
+
+/* ---------- Botón Crear ---------- */
+.btn-crear {
+  margin-top: 1.2rem;
+  background-color: #497558;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: 0.2s ease;
+}
+
+.btn-crear:hover {
+  background-color: #3b5e49;
+}
+
+.btn-crear i {
+  margin-right: 6px;
+}
