@@ -47,26 +47,6 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
     setPrecios(prev => ({ ...prev, [id]: valor }));
   };
 
-  const cargarUltimaConfiguracion = () => {
-    const guardadoMovimientos = localStorage.getItem(keyMovimientos);
-    const guardadoPrecios = localStorage.getItem(keyPrecios);
-
-    if (guardadoMovimientos) {
-      setMovimientos(JSON.parse(guardadoMovimientos));
-    }
-    if (guardadoPrecios) {
-      setPrecios(JSON.parse(guardadoPrecios));
-    }
-
-    if (guardadoMovimientos || guardadoPrecios) {
-      setMensaje('✓ Última configuración cargada');
-      setTimeout(() => setMensaje(''), 2000);
-    } else {
-      setMensaje('⚠ No hay configuración guardada');
-      setTimeout(() => setMensaje(''), 2000);
-    }
-  };
-
   const confirmarMovimientos = async () => {
     setLoading(true);
     let huboCambios = false;
@@ -121,13 +101,6 @@ function ModalMovimiento({ tipo, productos, onClose, onExito }) {
             {mensaje}
           </div>
         )}
-
-        <div className={styles['acciones-config']}>
-          <button className={styles['btn-cargar-config']} onClick={cargarUltimaConfiguracion}>
-            Cargar última configuración
-          </button>
-          <span className={styles['texto-auto-guardado']}>Se guarda automáticamente</span>
-        </div>
 
         <div className={styles['modal-body']}>
           <table className={styles['tabla-modal']}>

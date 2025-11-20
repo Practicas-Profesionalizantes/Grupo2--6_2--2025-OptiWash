@@ -81,51 +81,6 @@ router.post('/', (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const { cliente, modelo, patente, telefono, id_servicio } = req.body;
-
-  const servicioAsignado = id_servicio || 1;
-
-  if (!cliente || !modelo || !patente || !telefono) {
-    return res.status(400).json({ mensaje: 'Faltan datos' });
-  }
-
-  db.query(
-    'SELECT ID_Cliente, ID_Vehiculo FROM Registro_Lavado WHERE ID = ?',
-    [id],
-    (err, registros) => {
-      if (err || registros.length === 0) {
-        return res.status(404).json({ mensaje: 'Registro no encontrado' });
-      }
-
-      const id_cliente = registros[0].ID_Cliente;
-      const id_vehiculo = registros[0].ID_Vehiculo;
-
-      db.query('UPDATE Cliente SET Nombre = ?, Telefono = ? WHERE ID = ?', [
-        cliente,
-        telefono,
-        id_cliente,
-      ]);
-
-      db.query('UPDATE Vehiculo SET Marca = ?, Patente = ? WHERE ID = ?', [
-        modelo,
-        patente,
-        id_vehiculo,
-      ]);
-
-      db.query(
-        'UPDATE Registro_Lavado SET ID_Servicio = ? WHERE ID = ?',
-        [servicioAsignado, id],
-        (err) => {
-          if (err) return res.status(500).json({ mensaje: 'Error al actualizar registro' });
-          res.json({ mensaje: '✅ Registro actualizado correctamente' });
-        }
-      );
-    }
-  );
-});
-
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const { cliente, modelo, patente, telefono, id_servicio, precio, nota } = req.body;
